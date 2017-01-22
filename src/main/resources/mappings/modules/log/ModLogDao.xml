@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cn.jee.modules.log.dao.ModLogDao">
+    
+	<sql id="modLogColumns">
+		a.id AS "id",
+		a.log_type AS "logType",
+		a.module_type AS "moduleType",
+		a.entity_class AS "entityClass",
+		a.bis_method AS "bisMethod",
+		a.notes AS "notes",
+		a.msg AS "msg",
+		a.create_time AS "createTime",
+		a.del_flag AS "delFlag"
+	</sql>
+	
+	<sql id="modLogJoins">
+	</sql>
+    
+	<select id="get" resultType="ModLog">
+		SELECT 
+			<include refid="modLogColumns"/>
+		FROM mod_log a
+		<include refid="modLogJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="ModLog">
+		SELECT 
+			<include refid="modLogColumns"/>
+		FROM mod_log a
+		<include refid="modLogJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="logType != null and logType != ''">
+				AND a.log_type = #{logType}
+			</if>
+			<if test="entityClass != null and entityClass != ''">
+				AND a.entity_class LIKE 
+					<if test="dbName == 'oracle'">'%'||#{entityClass}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{entityClass}+'%'</if>
+					<if test="dbName == 'mysql'">concat('%',#{entityClass},'%')</if>
+			</if>
+			<if test="bisMethod != null and bisMethod != ''">
+				AND a.bis_method LIKE 
+					<if test="dbName == 'oracle'">'%'||#{bisMethod}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{bisMethod}+'%'</if>
+					<if test="dbName == 'mysql'">concat('%',#{bisMethod},'%')</if>
+			</if>
+			<if test="beginCreateTime != null and endCreateTime != null and beginCreateTime != '' and endCreateTime != ''">
+				AND a.create_time BETWEEN #{beginCreateTime} AND #{endCreateTime}
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="ModLog">
+		SELECT 
+			<include refid="modLogColumns"/>
+		FROM mod_log a
+		<include refid="modLogJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO mod_log(
+			id,
+			log_type,
+			module_type,
+			entity_class,
+			bis_method,
+			notes,
+			msg,
+			create_time,
+			del_flag
+		) VALUES (
+			#{id},
+			#{logType},
+			#{moduleType},
+			#{entityClass},
+			#{bisMethod},
+			#{notes},
+			#{msg},
+			#{createTime},
+			#{delFlag}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE mod_log SET 	
+			log_type = #{logType},
+			module_type = #{moduleType},
+			entity_class = #{entityClass},
+			bis_method = #{bisMethod},
+			notes = #{notes},
+			msg = #{msg},
+			create_time = #{createTime}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		UPDATE mod_log SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+	
+</mapper>
