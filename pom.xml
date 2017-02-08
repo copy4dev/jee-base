@@ -41,6 +41,7 @@
 		<dozer.version>5.5.1</dozer.version>
 		<poi.version>3.9</poi.version>
 		<freemarker.version>2.3.20</freemarker.version>
+		<quartz.version>2.2.3</quartz.version>
 		
 		<!-- jdbc driver setting -->
 		<mysql.driver.version>5.1.30</mysql.driver.version>
@@ -263,6 +264,18 @@
 			<version>2.2</version>
 			<scope>provided</scope>
 		</dependency> -->
+		
+		<dependency>
+    		<groupId>org.quartz-scheduler</groupId>
+    		<artifactId>quartz</artifactId>
+		    <version>${quartz.version}</version>
+		</dependency>
+			<dependency>
+		    <groupId>org.quartz-scheduler</groupId>
+		    <artifactId>quartz-jobs</artifactId>
+		    <version>${quartz.version}</version>
+		</dependency>
+  
 		<!-- WEB end -->
 
 		<!-- CACHE begin -->
@@ -323,7 +336,7 @@
 			<artifactId>activiti-engine</artifactId>
 			<version>${activiti.version}</version>
 		</dependency>
-		<dependency>
+		<!--<dependency>
 			<groupId>org.activiti</groupId>
 			<artifactId>activiti-spring</artifactId>
 			<version>${activiti.version}</version>
@@ -356,7 +369,7 @@
 			<groupId>org.activiti</groupId>
 			<artifactId>activiti-diagram-rest</artifactId>
 			<version>${activiti.version}</version>
-		</dependency>
+		</dependency>-->
 		
 		<!-- LOGGING begin -->
 		<dependency>
