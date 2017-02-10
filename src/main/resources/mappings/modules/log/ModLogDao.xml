@@ -6,7 +6,7 @@
 		a.id AS "id",
 		a.log_type AS "logType",
 		a.module_type AS "moduleType",
-		a.entity_class AS "entityClass",
+		a.entity_name AS "entityName",
 		a.bis_method AS "bisMethod",
 		a.notes AS "notes",
 		a.msg AS "msg",
@@ -34,18 +34,6 @@
 			a.del_flag = #{DEL_FLAG_NORMAL}
 			<if test="logType != null and logType != ''">
 				AND a.log_type = #{logType}
-			</if>
-			<if test="entityClass != null and entityClass != ''">
-				AND a.entity_class LIKE 
-					<if test="dbName == 'oracle'">'%'||#{entityClass}||'%'</if>
-					<if test="dbName == 'mssql'">'%'+#{entityClass}+'%'</if>
-					<if test="dbName == 'mysql'">concat('%',#{entityClass},'%')</if>
-			</if>
-			<if test="bisMethod != null and bisMethod != ''">
-				AND a.bis_method LIKE 
-					<if test="dbName == 'oracle'">'%'||#{bisMethod}||'%'</if>
-					<if test="dbName == 'mssql'">'%'+#{bisMethod}+'%'</if>
-					<if test="dbName == 'mysql'">concat('%',#{bisMethod},'%')</if>
 			</if>
 			<if test="beginCreateTime != null and endCreateTime != null and beginCreateTime != '' and endCreateTime != ''">
 				AND a.create_time BETWEEN #{beginCreateTime} AND #{endCreateTime}
@@ -82,7 +70,7 @@
 			id,
 			log_type,
 			module_type,
-			entity_class,
+			entity_name,
 			bis_method,
 			notes,
 			msg,
@@ -92,7 +80,7 @@
 			#{id},
 			#{logType},
 			#{moduleType},
-			#{entityClass},
+			#{entityName},
 			#{bisMethod},
 			#{notes},
 			#{msg},
@@ -105,7 +93,7 @@
 		UPDATE mod_log SET 	
 			log_type = #{logType},
 			module_type = #{moduleType},
-			entity_class = #{entityClass},
+			entity_name = #{entityName},
 			bis_method = #{bisMethod},
 			notes = #{notes},
 			msg = #{msg},

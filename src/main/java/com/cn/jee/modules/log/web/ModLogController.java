@@ -25,7 +25,7 @@ import com.cn.jee.modules.log.service.ModLogService;
 /**
  * 模块日志Controller
  * @author admin
- * @version 2017-01-19
+ * @version 2017-02-10
  */
 @Controller
 @RequestMapping(value = "${adminPath}/log/modLog")
