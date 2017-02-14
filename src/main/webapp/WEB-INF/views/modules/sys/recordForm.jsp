@@ -23,19 +23,9 @@
 				}
 			});
 			
-			$("#parentId").bind('click', function() {
-			   	console.debug("sdf");
-			});
-			
-			updateValue();
 		});
 	</script>
 	<script type="text/javascript">
-		function updateValue(){
-			if($("#parentId").val()==""){
-				$("#value").attr("readonly","readonly");
-			}
-		}
 	</script>
 </head>
 <body>
@@ -90,5 +80,7 @@
 			<input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/>
 		</div>
 	</form:form>
+	<script type="text/javascript">
+	</script>
 </body>
 </html>

@@ -36,5 +36,14 @@ public interface RoleDao extends CrudDao<Role> {
 	public int deleteRoleOffice(Role role);
 
 	public int insertRoleOffice(Role role);
+	
+	/**
+	 * 维护角色与数据权限关系
+	 * @param role
+	 * @return
+	 */
+	public int deleteRoleRecord(Role role);
+
+	public int insertRoleRecord(Role role);
 
 }

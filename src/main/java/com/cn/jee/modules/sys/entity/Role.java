@@ -36,6 +36,7 @@ public class Role extends DataEntity<Role> {
 //	private List<User> userList = Lists.newArrayList(); // 拥有用户列表
 	private List<Menu> menuList = Lists.newArrayList(); // 拥有菜单列表
 	private List<Office> officeList = Lists.newArrayList(); // 按明细设置数据范围
+	private List<Record> recordList = Lists.newArrayList(); // 按数据表字段设置数据范围
 
 	// 数据范围（1：所有数据；2：所在公司及以下数据；3：所在公司数据；4：所在部门及以下数据；5：所在部门数据；8：仅本人数据；9：按明细设置）
 	public static final String DATA_SCOPE_ALL = "1";
@@ -230,6 +231,43 @@ public class Role extends DataEntity<Role> {
 		}
 	}
 	
+	public List<Record> getRecordList() {
+		return recordList;
+	}
+
+	public void setRecordList(List<Record> recordList) {
+		this.recordList = recordList;
+	}
+	
+	public List<String> getRecordIdList() {
+		List<String> recordIdList = Lists.newArrayList();
+		for (Record record : recordList) {
+			recordIdList.add(record.getId());
+		}
+		return recordIdList;
+	}
+
+	public void setRecordIdList(List<String> recordIdList) {
+		recordList = Lists.newArrayList();
+		for (String recordId : recordIdList) {
+			Record record = new Record();
+			record.setId(recordId);
+			recordList.add(record);
+		}
+	}
+
+	public String getRecordIds() {
+		return StringUtils.join(getRecordIdList(), ",");
+	}
+	
+	public void setRecordIds(String recordIds) {
+		recordList = Lists.newArrayList();
+		if (recordIds != null){
+			String[] ids = StringUtils.split(recordIds, ",");
+			setRecordIdList(Lists.newArrayList(ids));
+		}
+	}
+
 	/**
 	 * 获取权限字符串列表
 	 */

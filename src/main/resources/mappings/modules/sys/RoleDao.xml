@@ -27,6 +27,9 @@
 		<collection property="officeList" ofType="Office">
 			<id property="id" column="officeList.id" />
 		</collection>
+		<collection property="recordList" ofType="Record">
+			<id property="id" column="recordList.id" />
+		</collection>
 	</resultMap>
 	
     <sql id="roleColumns">
@@ -60,7 +63,8 @@
 			uc.name AS "userList.company.name",
 			uo.name AS "userList.office.name", -->
 			rm.menu_id AS "menuList.id",
-			ro.office_id AS "officeList.id"
+			ro.office_id AS "officeList.id",
+			rr.record_id AS "recordList.id"
 		FROM sys_role a
 		JOIN sys_office o ON o.id = a.office_id<!-- 
 		LEFT JOIN sys_user_role ur ON ur.role_id = a.id
@@ -69,6 +73,7 @@
 		LEFT JOIN sys_office uo ON uo.id = u.office_id -->
 		LEFT JOIN sys_role_menu rm ON rm.role_id = a.id
 		LEFT JOIN sys_role_office ro ON ro.role_id = a.id
+		LEFT JOIN sys_role_record rr ON rr.role_id = a.id
 		WHERE a.id = #{id}
 	</select>
 	
@@ -97,6 +102,7 @@
 		LEFT JOIN sys_user_role ur ON ur.role_id = a.id
 		LEFT JOIN sys_user u ON u.id = ur.user_id
 		LEFT JOIN sys_role_office ro ON ro.role_id = a.id
+		LEFT JOIN sys_role_record rr ON rr.role_id = a.id
 		WHERE a.del_flag = #{DEL_FLAG_NORMAL} AND a.useable=#{useable}
 		<if test="user != null and user.id != null and user.id != ''">
 			AND u.id = #{user.id}
@@ -189,6 +195,20 @@
 		INSERT INTO sys_role_office(role_id, office_id)
 		<foreach collection="officeList" item="office" separator=" union all ">
 			SELECT #{id}, #{office.id}
+			<if test="dbName != 'mssql'">
+			FROM dual
+			</if>
+		</foreach>
+	</insert>
+	
+	<delete id="deleteRoleRecord">
+		DELETE FROM sys_role_record WHERE role_id = #{id}
+	</delete>
+	
+	<insert id="insertRoleRecord">
+		INSERT INTO sys_role_record(role_id, menu_id)
+		<foreach collection="menuList" item="menu" separator=" union all ">
+			SELECT #{id}, #{record.id}
 			<if test="dbName != 'mssql'">
 			FROM dual
 			</if>
