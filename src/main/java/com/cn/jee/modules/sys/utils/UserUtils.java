@@ -17,11 +17,13 @@ import com.cn.jee.common.utils.SpringContextHolder;
 import com.cn.jee.modules.sys.dao.AreaDao;
 import com.cn.jee.modules.sys.dao.MenuDao;
 import com.cn.jee.modules.sys.dao.OfficeDao;
+import com.cn.jee.modules.sys.dao.RecordDao;
 import com.cn.jee.modules.sys.dao.RoleDao;
 import com.cn.jee.modules.sys.dao.UserDao;
 import com.cn.jee.modules.sys.entity.Area;
 import com.cn.jee.modules.sys.entity.Menu;
 import com.cn.jee.modules.sys.entity.Office;
+import com.cn.jee.modules.sys.entity.Record;
 import com.cn.jee.modules.sys.entity.Role;
 import com.cn.jee.modules.sys.entity.User;
 import com.cn.jee.modules.sys.security.SystemAuthorizingRealm.Principal;
@@ -36,6 +38,7 @@ public class UserUtils {
 	private static UserDao userDao = SpringContextHolder.getBean(UserDao.class);
 	private static RoleDao roleDao = SpringContextHolder.getBean(RoleDao.class);
 	private static MenuDao menuDao = SpringContextHolder.getBean(MenuDao.class);
+	private static RecordDao recordDao = SpringContextHolder.getBean(RecordDao.class);
 	private static AreaDao areaDao = SpringContextHolder.getBean(AreaDao.class);
 	private static OfficeDao officeDao = SpringContextHolder.getBean(OfficeDao.class);
 
@@ -46,6 +49,7 @@ public class UserUtils {
 
 	public static final String CACHE_ROLE_LIST = "roleList";
 	public static final String CACHE_MENU_LIST = "menuList";
+	public static final String CACHE_RECORD_LIST = "recordList";
 	public static final String CACHE_AREA_LIST = "areaList";
 	public static final String CACHE_OFFICE_LIST = "officeList";
 	public static final String CACHE_OFFICE_ALL_LIST = "officeAllList";
@@ -94,6 +98,7 @@ public class UserUtils {
 	public static void clearCache(){
 		removeCache(CACHE_ROLE_LIST);
 		removeCache(CACHE_MENU_LIST);
+		removeCache(CACHE_RECORD_LIST);
 		removeCache(CACHE_AREA_LIST);
 		removeCache(CACHE_OFFICE_LIST);
 		removeCache(CACHE_OFFICE_ALL_LIST);
@@ -170,6 +175,22 @@ public class UserUtils {
 			putCache(CACHE_MENU_LIST, menuList);
 		}
 		return menuList;
+	}
+	
+	/**
+	 * 获取当前数据权限列表
+	 * @return
+	 */
+	public static List<Record> getRecordList(){
+		@SuppressWarnings("unchecked")
+		List<Record> recordList = (List<Record>)getCache(CACHE_RECORD_LIST);
+		if (recordList == null){
+			Record record = new Record();
+			record.setDelFlag("0");
+			recordList = recordDao.findList(record);
+			putCache(CACHE_RECORD_LIST, recordList);
+		}
+		return recordList;
 	}
 	
 	/**

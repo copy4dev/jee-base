@@ -282,6 +282,12 @@ public class SystemService extends BaseService implements InitializingBean {
 		if (role.getOfficeList().size() > 0) {
 			roleDao.insertRoleOffice(role);
 		}
+		// 更新角色与菜单关联
+		roleDao.deleteRoleRecord(role);
+		if (role.getRecordList().size() > 0) {
+			roleDao.insertRoleRecord(role);
+		}
+				
 		// 同步到Activiti
 //		saveActivitiGroup(role);
 		// 清除用户角色缓存

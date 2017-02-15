@@ -206,8 +206,8 @@
 	</delete>
 	
 	<insert id="insertRoleRecord">
-		INSERT INTO sys_role_record(role_id, menu_id)
-		<foreach collection="menuList" item="menu" separator=" union all ">
+		INSERT INTO sys_role_record(role_id, record_id)
+		<foreach collection="recordList" item="record" separator=" union all ">
 			SELECT #{id}, #{record.id}
 			<if test="dbName != 'mssql'">
 			FROM dual

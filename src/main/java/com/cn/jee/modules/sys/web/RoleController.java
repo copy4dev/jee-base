@@ -29,6 +29,7 @@ import com.cn.jee.modules.sys.entity.Office;
 import com.cn.jee.modules.sys.entity.Role;
 import com.cn.jee.modules.sys.entity.User;
 import com.cn.jee.modules.sys.service.OfficeService;
+import com.cn.jee.modules.sys.service.RecordService;
 import com.cn.jee.modules.sys.service.SystemService;
 import com.cn.jee.modules.sys.utils.UserUtils;
 
@@ -46,6 +47,9 @@ public class RoleController extends BaseController {
 	
 	@Autowired
 	private OfficeService officeService;
+	
+	@Autowired
+	private RecordService recordService;
 	
 	@ModelAttribute("role")
 	public Role get(@RequestParam(required=false) String id) {
@@ -73,6 +77,7 @@ public class RoleController extends BaseController {
 		model.addAttribute("role", role);
 		model.addAttribute("menuList", systemService.findAllMenu());
 		model.addAttribute("officeList", officeService.findAll());
+		model.addAttribute("recordList",UserUtils.getRecordList());
 		return "modules/sys/roleForm";
 	}
 	

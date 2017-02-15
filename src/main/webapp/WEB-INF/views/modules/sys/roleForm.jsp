@@ -23,16 +23,19 @@
 						ids.push(nodes[i].id);
 					}
 					$("#menuIds").val(ids);
+					
 					var ids2 = [], nodes2 = tree2.getCheckedNodes(true);
 					for(var i=0; i<nodes2.length; i++) {
 						ids2.push(nodes2[i].id);
 					}
 					$("#officeIds").val(ids2);
+					
 					var ids3 = [], nodes3 = tree3.getCheckedNodes(true);
 					for(var i=0; i<nodes3.length; i++) {
 						ids3.push(nodes3[i].id);
 					}
 					$("#recordIds").val(ids3);
+					
 					loading('正在提交，请稍等...');
 					form.submit();
 				},
@@ -94,20 +97,20 @@
 			
 			// 用户-数据权限
 			var zNodes3=[
-					<c:forEach items="${recordList}" var="menu">{id:"${record.id}", pId:"${not empty record.parent.id?record.parent.id:0}", name:"${not empty record.parent.id?record.name:'权限列表'}"},
+					<c:forEach items="${recordList}" var="record">{id:"${record.id}", pId:"${not empty record.parent.id?record.parent.id:0}", name:"${not empty record.parent.id?record.name:'权限列表'}"},
 		            </c:forEach>];
 			// 初始化树结构
 			var tree3 = $.fn.zTree.init($("#recordTree"), setting, zNodes3);
 			// 不选择父节点
 			tree3.setting.check.chkboxType = { "Y" : "ps", "N" : "s" };
 			// 默认选择节点
-			var ids = "${role.recordIds}".split(",");
-			for(var i=0; i<ids.length; i++) {
-				var node = tree3.getNodeByParam("id", ids[i]);
+			var ids3 = "${role.recordIds}".split(",");
+			for(var i=0; i<ids3.length; i++) {
+				var node = tree3.getNodeByParam("id", ids3[i]);
 				try{tree3.checkNode(node, true, false);}catch(e){}
 			}
 			// 默认展开全部节点
-			tree3.expandAll(true);v
+			tree3.expandAll(true);
 		});
 		function refreshOfficeTree(){
 			if($("#dataScope").val()==9){

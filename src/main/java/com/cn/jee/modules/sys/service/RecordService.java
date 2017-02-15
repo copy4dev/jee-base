@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.cn.jee.common.service.TreeService;
 import com.cn.jee.common.utils.StringUtils;
 import com.cn.jee.modules.sys.entity.Record;
+import com.cn.jee.modules.sys.utils.UserUtils;
 import com.cn.jee.modules.sys.dao.RecordDao;
 
 /**
@@ -21,7 +22,7 @@ import com.cn.jee.modules.sys.dao.RecordDao;
 @Service
 @Transactional(readOnly = true)
 public class RecordService extends TreeService<RecordDao, Record> {
-
+	
 	public Record get(String id) {
 		return super.get(id);
 	}
@@ -36,11 +37,15 @@ public class RecordService extends TreeService<RecordDao, Record> {
 	@Transactional(readOnly = false)
 	public void save(Record record) {
 		super.save(record);
+		// 清除用户数据权限缓存
+		UserUtils.removeCache(UserUtils.CACHE_RECORD_LIST);
 	}
 	
 	@Transactional(readOnly = false)
 	public void delete(Record record) {
 		super.delete(record);
+		// 清除用户数据权限缓存
+		UserUtils.removeCache(UserUtils.CACHE_RECORD_LIST);
 	}
 	
 }
