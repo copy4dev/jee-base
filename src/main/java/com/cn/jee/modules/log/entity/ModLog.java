@@ -4,9 +4,12 @@
 package com.cn.jee.modules.log.entity;
 
 import org.hibernate.validator.constraints.Length;
-import java.util.Date;
-import com.fasterxml.jackson.annotation.JsonFormat;
 
+import java.util.Date;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.google.common.collect.Lists;
 import com.cn.jee.common.persistence.DataEntity;
 
 /**
@@ -26,6 +29,8 @@ public class ModLog extends DataEntity<ModLog> {
 	private Date createTime;		// 生成时间
 	private Date beginCreateTime;		// 开始 生成时间
 	private Date endCreateTime;		// 结束 生成时间
+	
+	private List<String> logTypeList = Lists.newArrayList();	//日志类型列表，用于数据权限的in查询
 	
 	public ModLog() {
 		super();
@@ -111,6 +116,14 @@ public class ModLog extends DataEntity<ModLog> {
 
 	public void setEndCreateTime(Date endCreateTime) {
 		this.endCreateTime = endCreateTime;
+	}
+
+	public List<String> getLogTypeList() {
+		return logTypeList;
+	}
+
+	public void setLogTypeList(List<String> logTypeList) {
+		this.logTypeList = logTypeList;
 	}
 		
 }

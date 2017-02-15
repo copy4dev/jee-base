@@ -3,6 +3,8 @@
  */
 package com.cn.jee.modules.sys.dao;
 
+import java.util.List;
+
 import com.cn.jee.common.persistence.TreeDao;
 import com.cn.jee.common.persistence.annotation.MyBatisDao;
 import com.cn.jee.modules.sys.entity.Record;
@@ -15,4 +17,12 @@ import com.cn.jee.modules.sys.entity.Record;
  */
 @MyBatisDao
 public interface RecordDao extends TreeDao<Record> {
+	
+	/**
+	 * 获取当前用户授权的数据权限
+	 * @param userId
+	 * @return
+	 */
+	public List<Record> findByUserId(String userId);
+	
 }
