@@ -27,7 +27,6 @@ import com.cn.jee.modules.sys.entity.Office;
 import com.cn.jee.modules.sys.entity.Role;
 import com.cn.jee.modules.sys.entity.User;
 import com.cn.jee.modules.sys.service.OfficeService;
-import com.cn.jee.modules.sys.service.RecordService;
 import com.cn.jee.modules.sys.service.SystemService;
 import com.cn.jee.modules.sys.utils.UserUtils;
 import com.google.common.collect.Lists;
@@ -48,9 +47,6 @@ public class RoleController extends BaseController {
 
 	@Autowired
 	private OfficeService officeService;
-
-	@Autowired
-	private RecordService recordService;
 
 	@ModelAttribute("role")
 	public Role get(@RequestParam(required = false) String id) {

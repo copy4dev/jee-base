@@ -28,6 +28,7 @@ import com.cn.jee.modules.sys.entity.Record;
 import com.cn.jee.modules.sys.entity.Role;
 import com.cn.jee.modules.sys.entity.User;
 import com.cn.jee.modules.sys.security.SystemAuthorizingRealm.Principal;
+import com.google.common.collect.Lists;
 
 /**
  * 用户工具类
@@ -200,6 +201,21 @@ public class UserUtils {
 			putCache(CACHE_RECORD_LIST, recordList);
 		}
 		return recordList;
+	}
+	
+	/**
+	 * 获取当前用户拥有某一字段的数据权限列表
+	 * 
+	 * @param fieldName
+	 * @return
+	 */
+	public static List<String> getRecordFieldList(String fieldName) {
+		List<Record> recordList = getRecordList(fieldName);
+		List<String> sList=Lists.newArrayList();
+		for(int i=0;i<recordList.size();i++){
+			sList.add(recordList.get(i).getValue());
+		}
+		return sList;
 	}
 
 	/**

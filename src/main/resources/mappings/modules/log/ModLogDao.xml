@@ -32,16 +32,15 @@
 		<include refid="modLogJoins"/>
 		<where>
 			a.del_flag = #{DEL_FLAG_NORMAL}
-			<choose>
-				<when test="logTypeList != null and logTypeList.size != 0">
-					AND a.log_type = #{logType}
-				</when>
-				<when test="logType != null and logType != ''">
-					AND a.log_type = #{logType}
-				</when>
-				<otherwise>
-				</otherwise>
-			</choose>
+			<if test="logTypeList != null and logTypeList.size() != 0">
+				AND a.log_type IN
+				<foreach collection="logTypeList" item="item" index="index" open="(" separator="," close=")">
+					#{item}
+				</foreach>
+			</if>
+			<if test="logType != null and logType != ''">
+				AND a.log_type = #{logType}
+			</if>
 			<if test="beginCreateTime != null and endCreateTime != null and beginCreateTime != '' and endCreateTime != ''">
 				AND a.create_time BETWEEN #{beginCreateTime} AND #{endCreateTime}
 			</if>
