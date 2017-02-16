@@ -4,6 +4,7 @@
 package com.cn.jee.common.utils;
 
 import java.text.ParseException;
+import java.util.Calendar;
 import java.util.Date;
 
 import org.apache.commons.lang3.time.DateFormatUtils;
@@ -179,5 +180,30 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
 //		System.out.println(getDate("yyyy年MM月dd日 E"));
 //		long time = new Date().getTime()-parseDate("2012-11-19").getTime();
 //		System.out.println(time/(24*60*60*1000));
+	}
+	
+	// ### extend ###
+	
+	/**
+	 * 获取一个日期之前或之后的日期
+	 * 
+	 * @param date
+	 * @param calendarType eg:Calendar.YEAR
+	 * @param qty eg:+-X
+	 * @return
+	 */
+	public static final Date getDateByOther(Date date, int calendarType, int qty) {
+		Calendar now = Calendar.getInstance();
+		now.setTime(date);
+		now.set(calendarType, now.get(calendarType) + qty);
+		return now.getTime();
+	}
+
+	/**
+	 * 获取格林尼治时间<br/>
+	 * 相差八小时
+	 */
+	public static Date getGreenwichMeanTime(Date date) {
+		return getDateByOther(date, Calendar.HOUR_OF_DAY, -8);
 	}
 }
