@@ -3,7 +3,7 @@ package com.cn.jee.modules.job;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import com.cn.jee.common.quartz.ICronJob;
+import com.cn.jee.modules.quartz.utils.ICronJob;
 
 @Component
 public class Testjob implements ICronJob {

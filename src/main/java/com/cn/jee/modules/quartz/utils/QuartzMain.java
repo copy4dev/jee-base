@@ -1,4 +1,4 @@
-package com.cn.jee.common.quartz;
+package com.cn.jee.modules.quartz.utils;
 
 import java.util.Map;
 import java.util.Map.Entry;
@@ -24,7 +24,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * <p> Title: QuartzMain</p>
- * <p>Description: 调度器入口类，自动扫描所有{@link com.cn.jee.msg.quartz.ICronJob}对象</p>
+ * <p>Description: 调度器入口类，自动扫描所有{@link com.cn.jee.modules.quartz.utils.msg.quartz.ICronJob}对象</p>
  * <p>Copyright: Copyright (c) 2013 ITDCL All right reserved.</p>
  * <p>Company: ITDCL</p>
  * 

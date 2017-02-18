@@ -1,4 +1,4 @@
-package com.cn.jee.common.quartz;
+package com.cn.jee.modules.quartz.utils;
 
 import org.apache.log4j.Logger;
 
