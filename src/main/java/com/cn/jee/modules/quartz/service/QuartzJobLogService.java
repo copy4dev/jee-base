@@ -44,12 +44,4 @@ public class QuartzJobLogService extends CrudService<QuartzJobLogDao, QuartzJobL
 		super.delete(quartzJobLog);
 	}
 	
-	@Transactional(readOnly = false)
-	public String curdLog(){
-		QuartzJobLog quartzJobLog =new QuartzJobLog();
-//		quartzJobLog.set
-		this.save(quartzJobLog);
-		return quartzJobLog.getId();
-	}
-	
 }

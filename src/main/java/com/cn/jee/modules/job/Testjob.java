@@ -4,13 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import com.cn.jee.modules.quartz.entity.QuartzJobLog;
 import com.cn.jee.modules.quartz.service.QuartzJobLogService;
 import com.cn.jee.modules.quartz.utils.ICronJob;
 
 @Component
 public class Testjob implements ICronJob {
-	
+
 	@Autowired
 	private QuartzJobLogService quartzJobLogService;
 
@@ -25,9 +24,6 @@ public class Testjob implements ICronJob {
 	@Override
 	public void execute() {
 		logger.debug("定时调度测试");
-//		QuartzJobLog quartzJobLog = new QuartzJobLog();
-//		String s= quartzJobLogService.curdLog(quartzJobLog);
-//		System.out.println(s);
 	}
 
 }
