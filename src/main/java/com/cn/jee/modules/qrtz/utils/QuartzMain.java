@@ -1,4 +1,4 @@
-package com.cn.jee.modules.quartz.utils;
+package com.cn.jee.modules.qrtz.utils;
 
 import java.util.Map;
 import java.util.Map.Entry;
