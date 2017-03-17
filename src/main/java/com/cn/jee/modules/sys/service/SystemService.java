@@ -410,6 +410,7 @@ public class SystemService extends BaseService implements InitializingBean {
 		StringBuilder sb = new StringBuilder();
 		sb.append("欢迎使用 " + Global.getConfig("productName") + "  - Powered By http://jeesite.com");
 		System.out.println(sb.toString());
+		sb = new StringBuilder();
 		return true;
 	}
 
