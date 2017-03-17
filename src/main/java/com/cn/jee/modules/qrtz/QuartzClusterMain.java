@@ -42,6 +42,9 @@ public class QuartzClusterMain {
 	@Autowired
 	private ApplicationContext context;
 
+	/**
+	 * 初始化定时任务
+	 */
 	@PostConstruct
 	public void startQuartz() {
 		if (scheduler == null) {
@@ -75,6 +78,11 @@ public class QuartzClusterMain {
 
 	}
 
+	/**
+	 * 创建触发器
+	 * @param e
+	 * @return
+	 */
 	private CronTrigger createTrigger(Entry<String, CronQuartzBean> e) {
 		JobDetail jobDetail = createJobDetail(e);
 		if (jobDetail == null) {
@@ -97,6 +105,11 @@ public class QuartzClusterMain {
 		}
 	}
 
+	/**
+	 * 创建调度任务
+	 * @param e
+	 * @return
+	 */
 	private JobDetail createJobDetail(Entry<String, CronQuartzBean> e) {
 		JobDetailFactoryBean factory = new JobDetailFactoryBean();
 		factory.setName(e.getKey());
