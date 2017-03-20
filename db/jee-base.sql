@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50528
 File Encoding         : 65001
 
-Date: 2017-03-17 15:07:23
+Date: 2017-03-20 17:37:48
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -59,6 +59,8 @@ CREATE TABLE `gen_scheme` (
 -- ----------------------------
 INSERT INTO `gen_scheme` VALUES ('31964166a6f44bc09c1fc8a62191efe8', '模块日志', 'curd', 'com.cn.jee.modules', 'log', '', '模块日志', '模块日志', 'admin', '4179725ff37740f7b465aeaed3236c8b', '1', '2017-02-10 15:36:30', '1', '2017-02-10 15:36:30', '', '0');
 INSERT INTO `gen_scheme` VALUES ('5b27a762677f490791da6469c49d3b24', '数据权限', 'treeTable', 'com.cn.jee.modules', 'sys', '', '数据权限', '数据权限', 'admin', '15558ba95b80424f82035658333f342d', '1', '2017-02-10 13:51:21', '1', '2017-02-10 18:09:56', '', '0');
+INSERT INTO `gen_scheme` VALUES ('6bc584758eb74750ae2156d40533e041', '触发器Job明细', 'curd', 'com.cn.jee.modules', 'qrtz', '', '触发器Job明细', '触发器Job明细', '1002360', '311c0099dab945fa9b9d3b935c7e06de', '1', '2017-03-18 17:43:34', '1', '2017-03-18 17:45:50', '', '0');
+INSERT INTO `gen_scheme` VALUES ('d962adb7bd3e482f9e06d63641c1e02f', '触发器记录', 'curd', 'com.cn.jee.modules', 'qrtz', '', '触发器记录', '触发器记录', '1002360', '89531d800f6c4e9e8129f69ea0c5f6d7', '1', '2017-03-18 17:15:34', '1', '2017-03-18 17:15:34', '', '0');
 
 -- ----------------------------
 -- Table structure for gen_table
@@ -86,7 +88,9 @@ CREATE TABLE `gen_table` (
 -- Records of gen_table
 -- ----------------------------
 INSERT INTO `gen_table` VALUES ('15558ba95b80424f82035658333f342d', 'sys_record', '数据权限表', 'Record', '', '', '1', '2017-02-10 13:49:14', '1', '2017-02-10 18:09:30', '', '0');
+INSERT INTO `gen_table` VALUES ('311c0099dab945fa9b9d3b935c7e06de', 'qrtz_job_details', '触发器Job明细表', 'QrtzJobDetails', '', '', '1', '2017-03-18 17:41:41', '1', '2017-03-18 18:04:55', '', '0');
 INSERT INTO `gen_table` VALUES ('4179725ff37740f7b465aeaed3236c8b', 'mod_log', '模块日志', 'ModLog', '', '', '1', '2017-02-10 15:34:58', '1', '2017-02-10 15:34:58', '', '0');
+INSERT INTO `gen_table` VALUES ('89531d800f6c4e9e8129f69ea0c5f6d7', 'qrtz_triggers', '触发器记录表', 'QrtzTriggers', '', '', '1', '2017-03-18 17:11:52', '1', '2017-03-18 17:11:52', '', '0');
 
 -- ----------------------------
 -- Table structure for gen_table_column
@@ -127,28 +131,54 @@ CREATE TABLE `gen_table_column` (
 -- ----------------------------
 -- Records of gen_table_column
 -- ----------------------------
+INSERT INTO `gen_table_column` VALUES ('07958772d95847c1a62a6f994687fb83', '311c0099dab945fa9b9d3b935c7e06de', 'job_group', '任务所属组', 'varchar(200)', 'String', 'jobGroup', '1', '0', '1', '1', '0', '0', '=', 'input', '', null, '30', '1', '2017-03-18 17:41:41', '1', '2017-03-18 18:04:55', null, '0');
 INSERT INTO `gen_table_column` VALUES ('0dd662f6fc88468e9d091279d45c38a9', '4179725ff37740f7b465aeaed3236c8b', 'create_time', '生成时间', 'datetime', 'java.util.Date', 'createTime', '0', '1', '1', '1', '0', '1', 'between', 'dateselect', '', null, '80', '1', '2017-02-10 15:34:58', '1', '2017-02-10 15:34:58', null, '0');
+INSERT INTO `gen_table_column` VALUES ('0f85d95a62ed43a7971d644aa3aaf08f', '311c0099dab945fa9b9d3b935c7e06de', 'job_name', '任务名称', 'varchar(200)', 'String', 'jobName', '1', '0', '1', '1', '1', '1', '=', 'input', '', null, '20', '1', '2017-03-18 17:41:41', '1', '2017-03-18 18:04:55', null, '0');
 INSERT INTO `gen_table_column` VALUES ('16b65ae5c63b47c89122629389fff6f0', '4179725ff37740f7b465aeaed3236c8b', 'log_type', '日志类型', 'varchar(1)', 'String', 'logType', '0', '1', '1', '1', '1', '1', '=', 'select', 'mod_log_type', null, '20', '1', '2017-02-10 15:34:58', '1', '2017-02-10 15:34:58', null, '0');
+INSERT INTO `gen_table_column` VALUES ('173347ef6f6a43b8ac45a04223c0fa97', '311c0099dab945fa9b9d3b935c7e06de', 'is_nonconcurrent', '是否集群', 'varchar(1)', 'String', 'isNonconcurrent', '0', '0', '1', '1', '1', '0', '=', 'select', 'yes_no', null, '70', '1', '2017-03-18 17:41:41', '1', '2017-03-18 18:04:55', null, '0');
 INSERT INTO `gen_table_column` VALUES ('1aa18def81af466aa3d9f1e86a1190e7', '15558ba95b80424f82035658333f342d', 'sort', '排序', 'decimal(10,0)', 'Integer', 'sort', '0', '0', '1', '1', '0', '0', '=', 'input', '', null, '60', '1', '2017-02-10 13:49:14', '1', '2017-02-10 18:09:30', null, '0');
 INSERT INTO `gen_table_column` VALUES ('1ca87f67ee0d4e2086142146029329be', '15558ba95b80424f82035658333f342d', 'id', '编号', 'varchar(64)', 'String', 'id', '1', '0', '1', '0', '0', '0', '=', 'input', '', null, '10', '1', '2017-02-10 13:49:14', '1', '2017-02-10 18:09:30', null, '0');
 INSERT INTO `gen_table_column` VALUES ('1d2a38d14ec04d9f8da8a8ddaabc96ff', '15558ba95b80424f82035658333f342d', 'update_by', '更新者', 'varchar(64)', 'com.cn.jee.modules.sys.entity.User', 'updateBy.id', '0', '0', '1', '1', '1', '0', '=', 'input', '', null, '100', '1', '2017-02-10 13:49:14', '1', '2017-02-10 18:09:30', null, '0');
 INSERT INTO `gen_table_column` VALUES ('23e0e940645c4f9192cb7be6f45264ca', '4179725ff37740f7b465aeaed3236c8b', 'bis_method', '业务方法', 'varchar(50)', 'String', 'bisMethod', '0', '1', '1', '1', '1', '0', '=', 'input', '', null, '50', '1', '2017-02-10 15:34:58', '1', '2017-02-10 15:34:58', null, '0');
+INSERT INTO `gen_table_column` VALUES ('3847e0262bcb431ba2cb3c1f9b954509', '89531d800f6c4e9e8129f69ea0c5f6d7', 'trigger_name', '触发器名称', 'varchar(200)', 'String', 'triggerName', '1', '0', '1', '1', '1', '1', '=', 'input', '', null, '20', '1', '2017-03-18 17:11:52', '1', '2017-03-18 17:11:52', null, '0');
+INSERT INTO `gen_table_column` VALUES ('3c760e042987471eb70e91a9c66fe6dd', '89531d800f6c4e9e8129f69ea0c5f6d7', 'prev_fire_time', '上次触发时间', 'bigint(13)', 'Long', 'prevFireTime', '0', '1', '1', '1', '1', '0', '=', 'input', '', null, '80', '1', '2017-03-18 17:11:52', '1', '2017-03-18 17:11:52', null, '0');
+INSERT INTO `gen_table_column` VALUES ('4114abfd234c425d953f949745be55c7', '89531d800f6c4e9e8129f69ea0c5f6d7', 'calendar_name', '流程名称', 'varchar(200)', 'String', 'calendarName', '0', '1', '1', '1', '0', '0', '=', 'input', '', null, '140', '1', '2017-03-18 17:11:52', '1', '2017-03-18 17:11:52', null, '0');
 INSERT INTO `gen_table_column` VALUES ('420a1faf1d0147a5afcac60fae8fb065', '15558ba95b80424f82035658333f342d', 'parent_ids', '所有父级编号', 'varchar(2000)', 'String', 'parentIds', '0', '0', '1', '1', '0', '0', 'like', 'input', '', null, '30', '1', '2017-02-10 13:49:14', '1', '2017-02-10 18:09:30', null, '0');
+INSERT INTO `gen_table_column` VALUES ('43aea72b9f754bffb985b4b00bcc002c', '89531d800f6c4e9e8129f69ea0c5f6d7', 'job_name', '任务名称', 'varchar(200)', 'String', 'jobName', '0', '0', '1', '1', '1', '1', '=', 'input', '', null, '40', '1', '2017-03-18 17:11:52', '1', '2017-03-18 17:11:52', null, '0');
+INSERT INTO `gen_table_column` VALUES ('449e2cdad89347e38c861237f0e65cd8', '89531d800f6c4e9e8129f69ea0c5f6d7', 'end_time', '停止时间', 'bigint(13)', 'Long', 'endTime', '0', '1', '1', '1', '1', '0', '=', 'input', '', null, '130', '1', '2017-03-18 17:11:52', '1', '2017-03-18 17:11:52', null, '0');
+INSERT INTO `gen_table_column` VALUES ('44a921d3db3843f7a766315dad26abe8', '311c0099dab945fa9b9d3b935c7e06de', 'is_update_data', '是否更新', 'varchar(1)', 'String', 'isUpdateData', '0', '0', '1', '1', '1', '0', '=', 'select', 'yes_no', null, '80', '1', '2017-03-18 17:41:41', '1', '2017-03-18 18:04:55', null, '0');
 INSERT INTO `gen_table_column` VALUES ('47287eaff0ac4c0cb5f023013932305e', '4179725ff37740f7b465aeaed3236c8b', 'notes', '摘要', 'varchar(100)', 'String', 'notes', '0', '1', '1', '1', '1', '0', 'like', 'input', '', null, '60', '1', '2017-02-10 15:34:58', '1', '2017-02-10 15:34:58', null, '0');
 INSERT INTO `gen_table_column` VALUES ('49f3f5240b6a4ecbb6dd5ac9ebd582a4', '15558ba95b80424f82035658333f342d', 'value', '键值', 'varchar(2000)', 'String', 'value', '0', '1', '1', '1', '0', '0', 'like', 'input', '', null, '50', '1', '2017-02-10 13:49:14', '1', '2017-02-10 18:09:30', null, '0');
+INSERT INTO `gen_table_column` VALUES ('588087e698d7460c94a8ef858f34bcaa', '89531d800f6c4e9e8129f69ea0c5f6d7', 'job_group', '任务所属组', 'varchar(200)', 'String', 'jobGroup', '0', '0', '1', '1', '0', '0', '=', 'input', '', null, '50', '1', '2017-03-18 17:11:52', '1', '2017-03-18 17:11:52', null, '0');
+INSERT INTO `gen_table_column` VALUES ('5b545a0f63cd4d1696949609fe1b8577', '89531d800f6c4e9e8129f69ea0c5f6d7', 'description', '描述', 'varchar(250)', 'String', 'description', '0', '1', '1', '1', '1', '0', '=', 'input', '', null, '60', '1', '2017-03-18 17:11:52', '1', '2017-03-18 17:11:52', null, '0');
+INSERT INTO `gen_table_column` VALUES ('6d1fea396a6d47a5a31fb6e794c387be', '89531d800f6c4e9e8129f69ea0c5f6d7', 'priority', '优先级', 'int(11)', 'String', 'priority', '0', '1', '1', '1', '1', '0', '=', 'input', '', null, '90', '1', '2017-03-18 17:11:52', '1', '2017-03-18 17:11:52', null, '0');
 INSERT INTO `gen_table_column` VALUES ('6fe3212e98bc4364b5c5c06b76db622c', '15558ba95b80424f82035658333f342d', 'update_date', '更新时间', 'datetime', 'java.util.Date', 'updateDate', '0', '0', '1', '1', '1', '0', 'between', 'dateselect', '', null, '110', '1', '2017-02-10 13:49:14', '1', '2017-02-10 18:09:30', null, '0');
 INSERT INTO `gen_table_column` VALUES ('701767758d5f47fea4521c75b3f52616', '15558ba95b80424f82035658333f342d', 'description', '描述', 'varchar(100)', 'String', 'description', '0', '1', '1', '1', '1', '1', 'like', 'input', '', null, '70', '1', '2017-02-10 13:49:14', '1', '2017-02-10 18:09:30', null, '0');
+INSERT INTO `gen_table_column` VALUES ('724eaa19afc145eeb73109803dad88e3', '89531d800f6c4e9e8129f69ea0c5f6d7', 'misfire_instr', '异常数', 'smallint(2)', 'String', 'misfireInstr', '0', '1', '1', '1', '0', '0', '=', 'input', '', null, '150', '1', '2017-03-18 17:11:52', '1', '2017-03-18 17:11:52', null, '0');
+INSERT INTO `gen_table_column` VALUES ('7bfb9a4a725e49d7b77101da5dd5505f', '89531d800f6c4e9e8129f69ea0c5f6d7', 'trigger_type', '触发器类型', 'varchar(8)', 'String', 'triggerType', '0', '0', '1', '1', '1', '0', '=', 'input', '', null, '110', '1', '2017-03-18 17:11:52', '1', '2017-03-18 17:11:52', null, '0');
+INSERT INTO `gen_table_column` VALUES ('7f59c5dd75774cf7a7160a030b3642f6', '311c0099dab945fa9b9d3b935c7e06de', 'job_class_name', '任务所在类', 'varchar(250)', 'String', 'jobClassName', '0', '0', '1', '1', '1', '1', 'like', 'input', '', null, '50', '1', '2017-03-18 17:41:41', '1', '2017-03-18 18:04:55', null, '0');
 INSERT INTO `gen_table_column` VALUES ('8068cbf5dec548e1b2ce27f70d844dea', '15558ba95b80424f82035658333f342d', 'parent_id', '父级编号', 'varchar(64)', 'This', 'parent.id', '0', '0', '1', '1', '0', '0', '=', 'treeselect', '', null, '20', '1', '2017-02-10 13:49:14', '1', '2017-02-10 18:09:30', null, '0');
 INSERT INTO `gen_table_column` VALUES ('8603ede4977d40e19b6817ed4d20ab63', '15558ba95b80424f82035658333f342d', 'remarks', '备注信息', 'varchar(255)', 'String', 'remarks', '0', '1', '1', '1', '1', '0', '=', 'textarea', '', null, '120', '1', '2017-02-10 13:49:14', '1', '2017-02-10 18:09:30', null, '0');
 INSERT INTO `gen_table_column` VALUES ('86300bd2a1a64a5c9d8fe05974923fd9', '15558ba95b80424f82035658333f342d', 'name', '键名', 'varchar(100)', 'String', 'name', '0', '0', '1', '1', '1', '1', 'like', 'input', '', null, '40', '1', '2017-02-10 13:49:14', '1', '2017-02-10 18:09:30', null, '0');
 INSERT INTO `gen_table_column` VALUES ('87cb7da99e804389a100c57b0930f333', '15558ba95b80424f82035658333f342d', 'create_by', '创建者', 'varchar(64)', 'com.cn.jee.modules.sys.entity.User', 'createBy.id', '0', '0', '1', '0', '0', '0', '=', 'input', '', null, '80', '1', '2017-02-10 13:49:14', '1', '2017-02-10 18:09:30', null, '0');
+INSERT INTO `gen_table_column` VALUES ('8e59ee7c4d564b4398d88203b3e10763', '89531d800f6c4e9e8129f69ea0c5f6d7', 'trigger_group', '触发器所属组', 'varchar(200)', 'String', 'triggerGroup', '1', '0', '1', '1', '0', '0', '=', 'input', '', null, '30', '1', '2017-03-18 17:11:52', '1', '2017-03-18 17:11:52', null, '0');
+INSERT INTO `gen_table_column` VALUES ('91aa8084fd65411a810da7066100154b', '89531d800f6c4e9e8129f69ea0c5f6d7', 'job_data', '任务数据块', 'blob', 'Custom', 'jobData', '0', '0', '0', '0', '0', '0', '=', 'input', '', null, '160', '1', '2017-03-18 17:11:52', '1', '2017-03-18 17:11:52', null, '0');
+INSERT INTO `gen_table_column` VALUES ('93c3e4872a444f7abf7128ecef0a49f6', '89531d800f6c4e9e8129f69ea0c5f6d7', 'sched_name', '调度器名称', 'varchar(120)', 'String', 'schedName', '1', '0', '1', '1', '0', '1', '=', 'input', '', null, '10', '1', '2017-03-18 17:11:52', '1', '2017-03-18 17:11:52', null, '0');
+INSERT INTO `gen_table_column` VALUES ('94f4342766944e0684f223ab21a50bbb', '89531d800f6c4e9e8129f69ea0c5f6d7', 'start_time', '开始时间', 'bigint(13)', 'Long', 'startTime', '0', '0', '1', '1', '1', '0', '=', 'input', '', null, '120', '1', '2017-03-18 17:11:52', '1', '2017-03-18 17:11:52', null, '0');
 INSERT INTO `gen_table_column` VALUES ('95372a5c4c5c49dc81c0fc9bd5e9a3bb', '4179725ff37740f7b465aeaed3236c8b', 'del_flag', '是否处理', 'varchar(1)', 'String', 'delFlag', '0', '1', '1', '0', '0', '0', '=', 'radiobox', 'del_flag', null, '90', '1', '2017-02-10 15:34:58', '1', '2017-02-10 15:34:58', null, '0');
+INSERT INTO `gen_table_column` VALUES ('b33aea76046c4c3bba339e73ba9c30ca', '89531d800f6c4e9e8129f69ea0c5f6d7', 'next_fire_time', '下次触发时间', 'bigint(13)', 'Long', 'nextFireTime', '0', '1', '1', '1', '1', '0', '=', 'input', '', null, '70', '1', '2017-03-18 17:11:52', '1', '2017-03-18 17:11:52', null, '0');
+INSERT INTO `gen_table_column` VALUES ('bdcb559ad8574829aa5ed2759efa35ec', '311c0099dab945fa9b9d3b935c7e06de', 'description', '描述', 'varchar(250)', 'String', 'description', '0', '1', '1', '1', '0', '0', '=', 'input', '', null, '40', '1', '2017-03-18 17:41:41', '1', '2017-03-18 18:04:55', null, '0');
+INSERT INTO `gen_table_column` VALUES ('c2af2a9fe74e4c3493d5a2651cce71f6', '89531d800f6c4e9e8129f69ea0c5f6d7', 'trigger_state', '触发器状态', 'varchar(16)', 'String', 'triggerState', '0', '0', '1', '1', '1', '0', '=', 'input', '', null, '100', '1', '2017-03-18 17:11:52', '1', '2017-03-18 17:11:52', null, '0');
 INSERT INTO `gen_table_column` VALUES ('cde2dfa1d1f64fe8aa3f6c2605c9d33d', '4179725ff37740f7b465aeaed3236c8b', 'id', '编号', 'varchar(64)', 'String', 'id', '1', '0', '1', '0', '0', '0', '=', 'input', '', null, '10', '1', '2017-02-10 15:34:58', '1', '2017-02-10 15:34:58', null, '0');
 INSERT INTO `gen_table_column` VALUES ('cfa1820606724cf49e6b2a79d69f9d51', '4179725ff37740f7b465aeaed3236c8b', 'msg', '详细信息', 'text', 'String', 'msg', '0', '1', '1', '1', '0', '0', '=', 'input', '', null, '70', '1', '2017-02-10 15:34:58', '1', '2017-02-10 15:34:58', null, '0');
+INSERT INTO `gen_table_column` VALUES ('d874420c33ee4f3a9dd0ec53842197d1', '311c0099dab945fa9b9d3b935c7e06de', 'is_durable', '是否持久化', 'varchar(1)', 'String', 'isDurable', '0', '0', '1', '1', '1', '0', '=', 'select', 'yes_no', null, '60', '1', '2017-03-18 17:41:41', '1', '2017-03-18 18:04:55', null, '0');
+INSERT INTO `gen_table_column` VALUES ('d96c5e286b1f446f83a667ca591c1a4b', '311c0099dab945fa9b9d3b935c7e06de', 'requests_recovery', '是否自动恢复', 'varchar(1)', 'String', 'requestsRecovery', '0', '0', '1', '1', '1', '0', '=', 'select', 'yes_no', null, '90', '1', '2017-03-18 17:41:41', '1', '2017-03-18 18:04:55', null, '0');
 INSERT INTO `gen_table_column` VALUES ('dc819b20e5d949ea95098edc195740dc', '4179725ff37740f7b465aeaed3236c8b', 'module_type', '模块类型', 'varchar(2)', 'String', 'moduleType', '0', '1', '1', '1', '1', '0', '=', 'input', '', null, '30', '1', '2017-02-10 15:34:58', '1', '2017-02-10 15:34:58', null, '0');
 INSERT INTO `gen_table_column` VALUES ('e285972ac9a34d879de1240b9a22e670', '4179725ff37740f7b465aeaed3236c8b', 'entity_name', '实体名', 'varchar(50)', 'String', 'entityName', '0', '1', '1', '1', '1', '0', '=', 'input', '', null, '40', '1', '2017-02-10 15:34:58', '1', '2017-02-10 15:34:58', null, '0');
 INSERT INTO `gen_table_column` VALUES ('e436c425c44c4d518521306f59148c5a', '15558ba95b80424f82035658333f342d', 'create_date', '创建时间', 'datetime', 'java.util.Date', 'createDate', '0', '0', '1', '0', '0', '0', 'between', 'dateselect', '', null, '90', '1', '2017-02-10 13:49:14', '1', '2017-02-10 18:09:30', null, '0');
+INSERT INTO `gen_table_column` VALUES ('ed06a263b47b4fa4a8ac3233c591511c', '311c0099dab945fa9b9d3b935c7e06de', 'job_data', '任务数据块', 'blob', 'String', 'jobData', '0', '0', '0', '0', '0', '0', '=', 'input', '', null, '100', '1', '2017-03-18 17:41:41', '1', '2017-03-18 18:04:55', null, '0');
 INSERT INTO `gen_table_column` VALUES ('f92888582fb2488eab58b4885f02cc9a', '15558ba95b80424f82035658333f342d', 'del_flag', '删除标记', 'char(1)', 'String', 'delFlag', '0', '0', '1', '0', '0', '0', '=', 'radiobox', 'del_flag', null, '130', '1', '2017-02-10 13:49:14', '1', '2017-02-10 18:09:30', null, '0');
+INSERT INTO `gen_table_column` VALUES ('fde1313945274916ad66681d4937b6da', '311c0099dab945fa9b9d3b935c7e06de', 'sched_name', '调度器名称', 'varchar(120)', 'String', 'schedName', '1', '0', '1', '1', '1', '1', '=', 'input', '', null, '10', '1', '2017-03-18 17:41:41', '1', '2017-03-18 18:04:55', null, '0');
 
 -- ----------------------------
 -- Table structure for gen_template
@@ -248,7 +278,7 @@ CREATE TABLE `qrtz_cron_triggers` (
 -- ----------------------------
 -- Records of qrtz_cron_triggers
 -- ----------------------------
-INSERT INTO `qrtz_cron_triggers` VALUES ('quartzScheduler', 'testjobTrigger', 'DEFAULT', '0 0/1 * * * ?', 'Asia/Shanghai');
+INSERT INTO `qrtz_cron_triggers` VALUES ('quartzScheduler', 'testjobTrigger', 'DEFAULT', '0 0/5 * * * ?', 'Asia/Shanghai');
 
 -- ----------------------------
 -- Table structure for qrtz_fired_triggers
@@ -280,18 +310,18 @@ CREATE TABLE `qrtz_fired_triggers` (
 -- ----------------------------
 DROP TABLE IF EXISTS `qrtz_job_details`;
 CREATE TABLE `qrtz_job_details` (
-  `SCHED_NAME` varchar(120) NOT NULL,
-  `JOB_NAME` varchar(200) NOT NULL,
-  `JOB_GROUP` varchar(200) NOT NULL,
-  `DESCRIPTION` varchar(250) DEFAULT NULL,
-  `JOB_CLASS_NAME` varchar(250) NOT NULL,
-  `IS_DURABLE` varchar(1) NOT NULL,
-  `IS_NONCONCURRENT` varchar(1) NOT NULL,
-  `IS_UPDATE_DATA` varchar(1) NOT NULL,
-  `REQUESTS_RECOVERY` varchar(1) NOT NULL,
-  `JOB_DATA` blob,
+  `SCHED_NAME` varchar(120) NOT NULL COMMENT '调度器名称',
+  `JOB_NAME` varchar(200) NOT NULL COMMENT '任务名称',
+  `JOB_GROUP` varchar(200) NOT NULL COMMENT '任务所属组',
+  `DESCRIPTION` varchar(250) DEFAULT NULL COMMENT '描述',
+  `JOB_CLASS_NAME` varchar(250) NOT NULL COMMENT '任务所在类',
+  `IS_DURABLE` varchar(1) NOT NULL COMMENT '是否持久化',
+  `IS_NONCONCURRENT` varchar(1) NOT NULL COMMENT '是否集群',
+  `IS_UPDATE_DATA` varchar(1) NOT NULL COMMENT '是否更新',
+  `REQUESTS_RECOVERY` varchar(1) NOT NULL COMMENT '是否自动恢复',
+  `JOB_DATA` blob COMMENT '任务数据块',
   PRIMARY KEY (`SCHED_NAME`,`JOB_NAME`,`JOB_GROUP`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='触发器Job明细表';
 
 -- ----------------------------
 -- Records of qrtz_job_details
@@ -394,31 +424,31 @@ CREATE TABLE `qrtz_simprop_triggers` (
 -- ----------------------------
 DROP TABLE IF EXISTS `qrtz_triggers`;
 CREATE TABLE `qrtz_triggers` (
-  `SCHED_NAME` varchar(120) NOT NULL,
-  `TRIGGER_NAME` varchar(200) NOT NULL,
-  `TRIGGER_GROUP` varchar(200) NOT NULL,
-  `JOB_NAME` varchar(200) NOT NULL,
-  `JOB_GROUP` varchar(200) NOT NULL,
-  `DESCRIPTION` varchar(250) DEFAULT NULL,
-  `NEXT_FIRE_TIME` bigint(13) DEFAULT NULL,
-  `PREV_FIRE_TIME` bigint(13) DEFAULT NULL,
-  `PRIORITY` int(11) DEFAULT NULL,
-  `TRIGGER_STATE` varchar(16) NOT NULL,
-  `TRIGGER_TYPE` varchar(8) NOT NULL,
-  `START_TIME` bigint(13) NOT NULL,
-  `END_TIME` bigint(13) DEFAULT NULL,
-  `CALENDAR_NAME` varchar(200) DEFAULT NULL,
-  `MISFIRE_INSTR` smallint(2) DEFAULT NULL,
-  `JOB_DATA` blob,
+  `SCHED_NAME` varchar(120) NOT NULL COMMENT '调度器名称',
+  `TRIGGER_NAME` varchar(200) NOT NULL COMMENT '触发器名称',
+  `TRIGGER_GROUP` varchar(200) NOT NULL COMMENT '触发器所属组',
+  `JOB_NAME` varchar(200) NOT NULL COMMENT '任务名称',
+  `JOB_GROUP` varchar(200) NOT NULL COMMENT '任务所属组',
+  `DESCRIPTION` varchar(250) DEFAULT NULL COMMENT '描述',
+  `NEXT_FIRE_TIME` bigint(13) DEFAULT NULL COMMENT '下次触发时间',
+  `PREV_FIRE_TIME` bigint(13) DEFAULT NULL COMMENT '上次触发时间',
+  `PRIORITY` int(11) DEFAULT NULL COMMENT '优先级',
+  `TRIGGER_STATE` varchar(16) NOT NULL COMMENT '触发器状态',
+  `TRIGGER_TYPE` varchar(8) NOT NULL COMMENT '触发器类型',
+  `START_TIME` bigint(13) NOT NULL COMMENT '开始时间',
+  `END_TIME` bigint(13) DEFAULT NULL COMMENT '停止时间',
+  `CALENDAR_NAME` varchar(200) DEFAULT NULL COMMENT '流程名称',
+  `MISFIRE_INSTR` smallint(2) DEFAULT NULL COMMENT '异常数',
+  `JOB_DATA` blob COMMENT '任务数据块',
   PRIMARY KEY (`SCHED_NAME`,`TRIGGER_NAME`,`TRIGGER_GROUP`),
   KEY `SCHED_NAME` (`SCHED_NAME`,`JOB_NAME`,`JOB_GROUP`),
   CONSTRAINT `qrtz_triggers_ibfk_1` FOREIGN KEY (`SCHED_NAME`, `JOB_NAME`, `JOB_GROUP`) REFERENCES `qrtz_job_details` (`SCHED_NAME`, `JOB_NAME`, `JOB_GROUP`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='触发器记录表';
 
 -- ----------------------------
 -- Records of qrtz_triggers
 -- ----------------------------
-INSERT INTO `qrtz_triggers` VALUES ('quartzScheduler', 'testjobTrigger', 'DEFAULT', 'testjob', 'DEFAULT', null, '1489734480000', '1489734420000', '0', 'WAITING', 'CRON', '1489734227000', '0', null, '0', '');
+INSERT INTO `qrtz_triggers` VALUES ('quartzScheduler', 'testjobTrigger', 'DEFAULT', 'testjob', 'DEFAULT', '123', '1490002800000', '1490002560000', '0', 'WAITING', 'CRON', '1490002207000', '0', null, '0', '');
 
 -- ----------------------------
 -- Table structure for sys_area
@@ -636,6 +666,7 @@ CREATE TABLE `sys_menu` (
 -- ----------------------------
 -- Records of sys_menu
 -- ----------------------------
+INSERT INTO `sys_menu` VALUES ('0a220ac42a4a40aeafe92a73cf5b44a1', '6dbf9c29716b44dabb67a0941b001a98', '0,1,2,3,99bbea875afe4502b326080c258dec99,6dbf9c29716b44dabb67a0941b001a98,', '查看', '30', '', '', '', '0', 'qrtz:qrtzJobDetails:view', '1', '2017-03-18 18:03:05', '1', '2017-03-18 18:03:05', '', '0');
 INSERT INTO `sys_menu` VALUES ('1', '0', '0,', '功能菜单', '0', null, null, null, '1', null, '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '0');
 INSERT INTO `sys_menu` VALUES ('10', '3', '0,1,2,3,', '字典管理', '60', '/sys/dict/', null, 'th-list', '1', null, '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '0');
 INSERT INTO `sys_menu` VALUES ('11', '10', '0,1,2,3,10,', '查看', '30', null, null, null, '0', 'sys:dict:view', '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '0');
@@ -655,12 +686,14 @@ INSERT INTO `sys_menu` VALUES ('23', '2', '0,1,2,', '关于帮助', '990', null,
 INSERT INTO `sys_menu` VALUES ('238c7b87e2cd4fce94fd6bbe380eef0b', '4fdd86a238174e16b068025848396ff0', '0,1,2,3,4fdd86a238174e16b068025848396ff0,', '查看', '30', '', '', '', '0', 'sys:record:view', '1', '2017-02-10 14:27:52', '1', '2017-02-10 14:27:52', '', '0');
 INSERT INTO `sys_menu` VALUES ('24', '23', '0,1,2,23', '官方首页', '30', 'http://jeesite.com', '_blank', null, '0', null, '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '0');
 INSERT INTO `sys_menu` VALUES ('27', '1', '0,1,', '我的面板', '100', null, null, null, '1', null, '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '0');
+INSERT INTO `sys_menu` VALUES ('27253c8813e74c03b37f7abaa2d46319', '6dbf9c29716b44dabb67a0941b001a98', '0,1,2,3,99bbea875afe4502b326080c258dec99,6dbf9c29716b44dabb67a0941b001a98,', '修改', '60', '', '', '', '0', 'qrtz:qrtzJobDetails:edit', '1', '2017-03-18 18:03:26', '1', '2017-03-18 18:03:26', '', '0');
 INSERT INTO `sys_menu` VALUES ('28', '27', '0,1,27,', '个人信息', '30', null, null, null, '1', null, '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '0');
 INSERT INTO `sys_menu` VALUES ('29', '28', '0,1,27,28,', '个人信息', '30', '/sys/user/info', null, 'user', '1', null, '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '0');
 INSERT INTO `sys_menu` VALUES ('2dc3b306c0864f01a1a57de13884e18d', '4fdd86a238174e16b068025848396ff0', '0,1,2,3,4fdd86a238174e16b068025848396ff0,', '修改', '60', '', '', '', '0', 'sys:record:edit', '1', '2017-02-10 14:28:13', '1', '2017-02-10 14:28:13', '', '0');
 INSERT INTO `sys_menu` VALUES ('3', '2', '0,1,2,', '系统设置', '980', null, null, null, '1', null, '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '0');
 INSERT INTO `sys_menu` VALUES ('30', '28', '0,1,27,28,', '修改密码', '40', '/sys/user/modifyPwd', null, 'lock', '1', null, '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '0');
 INSERT INTO `sys_menu` VALUES ('4', '3', '0,1,2,3,', '菜单管理', '30', '/sys/menu/', null, 'list-alt', '1', null, '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '0');
+INSERT INTO `sys_menu` VALUES ('473b7b26d99b43a48616d300034ba456', 'b5256daef2f7499c8e3b8e0a145bd93d', '0,1,2,3,99bbea875afe4502b326080c258dec99,b5256daef2f7499c8e3b8e0a145bd93d,', '修改', '60', '', '', '', '0', 'qrtz:qrtzTriggers:edit', '1', '2017-03-18 17:26:25', '1', '2017-03-18 18:01:42', '', '0');
 INSERT INTO `sys_menu` VALUES ('4fdd86a238174e16b068025848396ff0', '3', '0,1,2,3,', '数据管理', '90', '/sys/record', '', 'lock', '1', '', '1', '2017-02-10 14:22:49', '1', '2017-02-10 14:27:16', '', '0');
 INSERT INTO `sys_menu` VALUES ('5', '4', '0,1,2,3,4,', '查看', '30', null, null, null, '0', 'sys:menu:view', '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '0');
 INSERT INTO `sys_menu` VALUES ('56', '71', '0,1,27,71,', '文件管理', '90', '/../static/ckfinder/ckfinder.html', null, 'folder-open', '1', null, '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '0');
@@ -670,6 +703,7 @@ INSERT INTO `sys_menu` VALUES ('59', '56', '0,1,27,40,56,', '修改', '50', null
 INSERT INTO `sys_menu` VALUES ('6', '4', '0,1,2,3,4,', '修改', '40', null, null, null, '0', 'sys:menu:edit', '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '0');
 INSERT INTO `sys_menu` VALUES ('67', '2', '0,1,2,', '日志查询', '985', null, null, null, '1', null, '1', '2013-06-03 08:00:00', '1', '2013-06-03 08:00:00', null, '0');
 INSERT INTO `sys_menu` VALUES ('68', '67', '0,1,2,67,', '日志查询', '30', '/sys/log', null, 'pencil', '1', 'sys:log:view', '1', '2013-06-03 08:00:00', '1', '2013-06-03 08:00:00', null, '0');
+INSERT INTO `sys_menu` VALUES ('6dbf9c29716b44dabb67a0941b001a98', '99bbea875afe4502b326080c258dec99', '0,1,2,3,99bbea875afe4502b326080c258dec99,', '任务管理', '60', '/qrtz/qrtzJobDetails', '', 'ok', '1', '', '1', '2017-03-18 18:02:45', '1', '2017-03-18 18:08:03', '', '0');
 INSERT INTO `sys_menu` VALUES ('7', '3', '0,1,2,3,', '角色管理', '50', '/sys/role/', null, 'lock', '1', null, '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '0');
 INSERT INTO `sys_menu` VALUES ('71', '27', '0,1,27,', '文件管理', '90', null, null, null, '1', null, '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '0');
 INSERT INTO `sys_menu` VALUES ('79', '1', '0,1,', '代码生成', '5000', null, null, null, '1', null, '1', '2013-10-16 08:00:00', '1', '2013-10-16 08:00:00', null, '0');
@@ -680,6 +714,9 @@ INSERT INTO `sys_menu` VALUES ('82', '80', '0,1,79,80,', '业务表配置', '20'
 INSERT INTO `sys_menu` VALUES ('84', '67', '0,1,2,67,', '连接池监视', '40', '/../druid', null, null, '1', null, '1', '2013-10-18 08:00:00', '1', '2013-10-18 08:00:00', null, '0');
 INSERT INTO `sys_menu` VALUES ('85', '76', '0,1,75,76,', '行政区域', '80', '/../static/map/map-city.html', null, null, '1', null, '1', '2013-10-22 08:00:00', '1', '2013-10-22 08:00:00', null, '0');
 INSERT INTO `sys_menu` VALUES ('9', '7', '0,1,2,3,7,', '修改', '40', null, null, null, '0', 'sys:role:edit', '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '0');
+INSERT INTO `sys_menu` VALUES ('99bbea875afe4502b326080c258dec99', '3', '0,1,2,3,', '调度管理', '120', '', '', 'spinner', '1', '', '1', '2017-03-18 17:25:43', '1', '2017-03-18 18:02:02', '', '0');
+INSERT INTO `sys_menu` VALUES ('b5256daef2f7499c8e3b8e0a145bd93d', '99bbea875afe4502b326080c258dec99', '0,1,2,3,99bbea875afe4502b326080c258dec99,', '触发器管理', '30', '/qrtz/qrtzTriggers', '', 'fullscreen', '1', '', '1', '2017-03-18 18:01:14', '1', '2017-03-18 18:07:44', '', '0');
+INSERT INTO `sys_menu` VALUES ('cd88e08b61cd4fc191da587054064bf6', 'b5256daef2f7499c8e3b8e0a145bd93d', '0,1,2,3,99bbea875afe4502b326080c258dec99,b5256daef2f7499c8e3b8e0a145bd93d,', '查看', '30', '', '', '', '0', 'qrtz:qrtzTriggers:view', '1', '2017-03-18 17:26:09', '1', '2017-03-18 18:01:29', '', '0');
 
 -- ----------------------------
 -- Table structure for sys_office
@@ -807,7 +844,7 @@ CREATE TABLE `sys_role` (
 -- ----------------------------
 -- Records of sys_role
 -- ----------------------------
-INSERT INTO `sys_role` VALUES ('1', '2', '系统管理员', 'dept', 'assignment', '1', '1', '1', '1', '2013-05-27 08:00:00', '1', '2017-02-15 10:55:58', '', '0');
+INSERT INTO `sys_role` VALUES ('1', '2', '系统管理员', 'dept', 'assignment', '1', '1', '1', '1', '2013-05-27 08:00:00', '1', '2017-03-18 18:03:44', '', '0');
 INSERT INTO `sys_role` VALUES ('2', '1', '公司管理员', 'hr', 'assignment', '2', null, '1', '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '0');
 INSERT INTO `sys_role` VALUES ('3', '1', '本公司管理员', 'a', 'assignment', '3', null, '1', '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '0');
 INSERT INTO `sys_role` VALUES ('4', '1', '部门管理员', 'b', 'assignment', '4', null, '1', '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '0');
@@ -828,6 +865,7 @@ CREATE TABLE `sys_role_menu` (
 -- ----------------------------
 -- Records of sys_role_menu
 -- ----------------------------
+INSERT INTO `sys_role_menu` VALUES ('1', '0a220ac42a4a40aeafe92a73cf5b44a1');
 INSERT INTO `sys_role_menu` VALUES ('1', '1');
 INSERT INTO `sys_role_menu` VALUES ('1', '10');
 INSERT INTO `sys_role_menu` VALUES ('1', '11');
@@ -847,12 +885,14 @@ INSERT INTO `sys_role_menu` VALUES ('1', '23');
 INSERT INTO `sys_role_menu` VALUES ('1', '238c7b87e2cd4fce94fd6bbe380eef0b');
 INSERT INTO `sys_role_menu` VALUES ('1', '24');
 INSERT INTO `sys_role_menu` VALUES ('1', '27');
+INSERT INTO `sys_role_menu` VALUES ('1', '27253c8813e74c03b37f7abaa2d46319');
 INSERT INTO `sys_role_menu` VALUES ('1', '28');
 INSERT INTO `sys_role_menu` VALUES ('1', '29');
 INSERT INTO `sys_role_menu` VALUES ('1', '2dc3b306c0864f01a1a57de13884e18d');
 INSERT INTO `sys_role_menu` VALUES ('1', '3');
 INSERT INTO `sys_role_menu` VALUES ('1', '30');
 INSERT INTO `sys_role_menu` VALUES ('1', '4');
+INSERT INTO `sys_role_menu` VALUES ('1', '473b7b26d99b43a48616d300034ba456');
 INSERT INTO `sys_role_menu` VALUES ('1', '4fdd86a238174e16b068025848396ff0');
 INSERT INTO `sys_role_menu` VALUES ('1', '5');
 INSERT INTO `sys_role_menu` VALUES ('1', '56');
@@ -862,6 +902,7 @@ INSERT INTO `sys_role_menu` VALUES ('1', '59');
 INSERT INTO `sys_role_menu` VALUES ('1', '6');
 INSERT INTO `sys_role_menu` VALUES ('1', '67');
 INSERT INTO `sys_role_menu` VALUES ('1', '68');
+INSERT INTO `sys_role_menu` VALUES ('1', '6dbf9c29716b44dabb67a0941b001a98');
 INSERT INTO `sys_role_menu` VALUES ('1', '7');
 INSERT INTO `sys_role_menu` VALUES ('1', '71');
 INSERT INTO `sys_role_menu` VALUES ('1', '79');
@@ -872,6 +913,9 @@ INSERT INTO `sys_role_menu` VALUES ('1', '82');
 INSERT INTO `sys_role_menu` VALUES ('1', '84');
 INSERT INTO `sys_role_menu` VALUES ('1', '85');
 INSERT INTO `sys_role_menu` VALUES ('1', '9');
+INSERT INTO `sys_role_menu` VALUES ('1', '99bbea875afe4502b326080c258dec99');
+INSERT INTO `sys_role_menu` VALUES ('1', 'b5256daef2f7499c8e3b8e0a145bd93d');
+INSERT INTO `sys_role_menu` VALUES ('1', 'cd88e08b61cd4fc191da587054064bf6');
 INSERT INTO `sys_role_menu` VALUES ('2', '1');
 INSERT INTO `sys_role_menu` VALUES ('2', '10');
 INSERT INTO `sys_role_menu` VALUES ('2', '11');
@@ -1143,7 +1187,7 @@ CREATE TABLE `sys_user` (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES ('1', '1', '2', 'thinkgem', '02a3f0772fcca9f415adc990734b45c6f059c7d33ee28362c4852032', '0001', '系统管理员', 'thinkgem@163.com', '8675', '8675', null, null, '0:0:0:0:0:0:0:1', '2017-03-17 15:04:41', '1', '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', '最高管理员', '0');
+INSERT INTO `sys_user` VALUES ('1', '1', '2', 'thinkgem', '02a3f0772fcca9f415adc990734b45c6f059c7d33ee28362c4852032', '0001', '系统管理员', 'thinkgem@163.com', '8675', '8675', null, null, '0:0:0:0:0:0:0:1', '2017-03-20 17:31:16', '1', '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', '最高管理员', '0');
 
 -- ----------------------------
 -- Table structure for sys_user_role

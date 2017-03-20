@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cn.jee.modules.qrtz.dao.QrtzJobDetailsDao">
+    
+	<sql id="qrtzJobDetailsColumns">
+		a.sched_name AS "schedName",
+		a.job_name AS "jobName",
+		a.job_group AS "jobGroup",
+		a.description AS "description",
+		a.job_class_name AS "jobClassName",
+		a.is_durable AS "isDurable",
+		a.is_nonconcurrent AS "isNonconcurrent",
+		a.is_update_data AS "isUpdateData",
+		a.requests_recovery AS "requestsRecovery",
+		a.job_data AS "jobData"
+	</sql>
+	
+	<sql id="qrtzJobDetailsJoins">
+	</sql>
+    
+	<select id="get" resultType="QrtzJobDetails">
+		SELECT 
+			<include refid="qrtzJobDetailsColumns"/>
+		FROM qrtz_job_details a
+		<include refid="qrtzJobDetailsJoins"/>
+		WHERE 
+			a.sched_name = #{0} AND
+			a.job_name = #{1} AND
+			a.job_group = #{2}
+	</select>
+	
+	<select id="findList" resultType="QrtzJobDetails">
+		SELECT 
+			<include refid="qrtzJobDetailsColumns"/>
+		FROM qrtz_job_details a
+		<include refid="qrtzJobDetailsJoins"/>
+		<where>
+			
+			<if test="schedName != null and schedName != ''">
+				AND a.sched_name = #{schedName}
+			</if>
+			<if test="jobName != null and jobName != ''">
+				AND a.job_name = #{jobName}
+			</if>
+			<if test="jobClassName != null and jobClassName != ''">
+				AND a.job_class_name LIKE 
+					<if test="dbName == 'oracle'">'%'||#{jobClassName}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{jobClassName}+'%'</if>
+					<if test="dbName == 'mysql'">concat('%',#{jobClassName},'%')</if>
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="QrtzJobDetails">
+		SELECT 
+			<include refid="qrtzJobDetailsColumns"/>
+		FROM qrtz_job_details a
+		<include refid="qrtzJobDetailsJoins"/>
+		<where>
+			
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO qrtz_job_details(
+			sched_name,
+			job_name,
+			job_group,
+			description,
+			job_class_name,
+			is_durable,
+			is_nonconcurrent,
+			is_update_data,
+			requests_recovery
+		) VALUES (
+			#{schedName},
+			#{jobName},
+			#{jobGroup},
+			#{description},
+			#{jobClassName},
+			#{isDurable},
+			#{isNonconcurrent},
+			#{isUpdateData},
+			#{requestsRecovery}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE qrtz_job_details SET 	
+			sched_name = #{schedName},
+			job_name = #{jobName},
+			job_group = #{jobGroup},
+			description = #{description},
+			job_class_name = #{jobClassName},
+			is_durable = #{isDurable},
+			is_nonconcurrent = #{isNonconcurrent},
+			is_update_data = #{isUpdateData},
+			requests_recovery = #{requestsRecovery}
+		WHERE sched_name = #{schedName} AND job_name = #{jobName} AND job_group = #{jobGroup}
+	</update>
+	
+	<update id="delete">
+		DELETE FROM qrtz_job_details
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

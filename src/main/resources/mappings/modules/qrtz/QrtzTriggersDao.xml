@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cn.jee.modules.qrtz.dao.QrtzTriggersDao">
+    
+	<sql id="qrtzTriggersColumns">
+		a.sched_name AS "schedName",
+		a.trigger_name AS "triggerName",
+		a.trigger_group AS "triggerGroup",
+		a.job_name AS "jobName",
+		a.job_group AS "jobGroup",
+		a.description AS "description",
+		a.next_fire_time AS "nextFireTime",
+		a.prev_fire_time AS "prevFireTime",
+		a.priority AS "priority",
+		a.trigger_state AS "triggerState",
+		a.trigger_type AS "triggerType",
+		a.start_time AS "startTime",
+		a.end_time AS "endTime",
+		a.calendar_name AS "calendarName",
+		a.misfire_instr AS "misfireInstr",
+		a.job_data AS "jobData",
+		b.cron_expression AS "cronExpression"
+	</sql>
+	
+	<sql id="qrtzTriggersJoins">
+		LEFT JOIN qrtz_cron_triggers b ON a.sched_name = b.sched_name AND a.trigger_name = b.trigger_name AND a.trigger_group = b.trigger_group
+	</sql>
+    
+	<select id="get" resultType="QrtzTriggers">
+		SELECT 
+			<include refid="qrtzTriggersColumns"/>
+		FROM qrtz_triggers a
+		<include refid="qrtzTriggersJoins"/>
+		WHERE 
+			a.sched_name = #{0} AND
+			a.trigger_name = #{1} AND
+			a.trigger_group = #{2}
+	</select>
+	
+	<select id="findList" resultType="QrtzTriggers">
+		SELECT 
+			<include refid="qrtzTriggersColumns"/>
+		FROM qrtz_triggers a
+		<include refid="qrtzTriggersJoins"/>
+		<where>
+			
+			<if test="schedName != null and schedName != ''">
+				AND a.sched_name = #{schedName}
+			</if>
+			<if test="triggerName != null and triggerName != ''">
+				AND a.trigger_name = #{triggerName}
+			</if>
+			<if test="jobName != null and jobName != ''">
+				AND a.job_name = #{jobName}
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="QrtzTriggers">
+		SELECT 
+			<include refid="qrtzTriggersColumns"/>
+		FROM qrtz_triggers a
+		<include refid="qrtzTriggersJoins"/>
+		<where>
+			
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO qrtz_triggers(
+			sched_name,
+			trigger_name,
+			trigger_group,
+			job_name,
+			job_group,
+			description,
+			next_fire_time,
+			prev_fire_time,
+			priority,
+			trigger_state,
+			trigger_type,
+			start_time,
+			end_time,
+			calendar_name,
+			misfire_instr
+		) VALUES (
+			#{schedName},
+			#{triggerName},
+			#{triggerGroup},
+			#{jobName},
+			#{jobGroup},
+			#{description},
+			#{nextFireTime},
+			#{prevFireTime},
+			#{priority},
+			#{triggerState},
+			#{triggerType},
+			#{startTime},
+			#{endTime},
+			#{calendarName},
+			#{misfireInstr}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE qrtz_triggers a 
+		INNER JOIN qrtz_cron_triggers b ON a.sched_name = b.sched_name AND a.trigger_name = b.trigger_name AND a.trigger_group = b.trigger_group 
+		SET 	 
+			<!-- a.sched_name = #{schedName},
+			a.trigger_name = #{triggerName},
+			a.trigger_group = #{triggerGroup},
+			a.job_name = #{jobName},
+			a.job_group = #{jobGroup},
+			a.next_fire_time = #{nextFireTime},
+			a.prev_fire_time = #{prevFireTime},
+			a.priority = #{priority},
+			a.trigger_state = #{triggerState},
+			a.trigger_type = #{triggerType},
+			a.start_time = #{startTime},
+			a.end_time = #{endTime},
+			a.calendar_name = #{calendarName},
+			a.misfire_instr = #{misfireInstr},-->
+			a.description = #{description},
+			b.cron_expression = #{cronExpression}
+		WHERE a.sched_name = #{schedName} AND a.trigger_name = #{triggerName} AND a.trigger_group = #{triggerGroup}
+	</update>
+	
+	<update id="delete">
+		DELETE FROM qrtz_triggers
+		WHERE id = #{id}
+	</update>
+	
+</mapper>
