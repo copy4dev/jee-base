@@ -14,6 +14,7 @@
 			$("#searchForm").submit();
         	return false;
         }
+		
 	</script>
 </head>
 <body>
@@ -35,6 +36,7 @@
 				<form:input path="jobName" htmlEscape="false" maxlength="200" class="input-medium"/>
 			</li>
 			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li>
+			<li class="btns"><a href="${ctx}/qrtz/qrtzTriggers/debug">debug</a></li>
 			<li class="clearfix"></li>
 		</ul>
 	</form:form>

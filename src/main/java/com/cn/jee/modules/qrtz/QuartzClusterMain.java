@@ -9,7 +9,11 @@ import javax.annotation.PostConstruct;
 
 import org.quartz.CronTrigger;
 import org.quartz.JobDetail;
+import org.quartz.Scheduler;
+import org.quartz.SchedulerException;
+import org.quartz.SchedulerFactory;
 import org.quartz.Trigger;
+import org.quartz.impl.StdSchedulerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,15 +26,18 @@ import org.springframework.stereotype.Component;
 
 /**
  * 
- * <p> Title: QuartzClusterMain</p>
- * <p>Description: 调度器入口类，自动扫描所有{@link com.cn.chnskin.msg.quartz.CronQuartzBean}对象</p>
- * <p>Copyright: Copyright (c) 2013 ITDCL All right reserved.</p>
- * <p>Company: ITDCL</p>
+ * <p>
+ * Title: QuartzClusterMain<br/>
+ * Description: 调度器入口类，自动扫描所有{@link com.cn.chnskin.msg.quartz.CronQuartzBean}对象<br/>
+ * Copyright: Copyright (c) 2013 ITDCL All right reserved.<br/>
+ * Company: ITDCL<br/>
+ * </p>
  * 
  * @author yjf
  * @version 1.0
  * 
- * 修改记录: 下面填写修改的内容以及修改的日期 1.2013-11-27 下午5:49:37 yjf new
+ *          修改记录: 下面填写修改的内容以及修改的日期<br/>
+ *          1.2013-11-27 下午5:49:37 yjf new <br/>
  */
 @Component
 @Lazy(false)
@@ -80,6 +87,7 @@ public class QuartzClusterMain {
 
 	/**
 	 * 创建触发器
+	 * 
 	 * @param e
 	 * @return
 	 */
@@ -107,6 +115,7 @@ public class QuartzClusterMain {
 
 	/**
 	 * 创建调度任务
+	 * 
 	 * @param e
 	 * @return
 	 */
@@ -128,6 +137,23 @@ public class QuartzClusterMain {
 			logger.error("", ex);
 			return null;
 		}
+	}
+
+	/**
+	 * 创建一个调度对象
+	 * 
+	 * @return
+	 * @throws SchedulerException
+	 */
+	public Scheduler getScheduler() {
+		SchedulerFactory sf = new StdSchedulerFactory();
+		Scheduler scheduler = null;
+		try {
+			scheduler = sf.getScheduler();
+		} catch (SchedulerException e) {
+			e.printStackTrace();
+		}
+		return scheduler;
 	}
 
 }
