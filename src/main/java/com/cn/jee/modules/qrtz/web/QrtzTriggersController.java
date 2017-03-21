@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.quartz.SchedulerException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -86,23 +85,11 @@ public class QrtzTriggersController extends BaseController {
 	}
 
 	@RequiresPermissions("qrtz:qrtzTriggers:view")
-	@RequestMapping(value = { "debug" })
+	@RequestMapping(value = { "option" })
 	public String debug(QrtzTriggers qrtzTriggers, HttpServletRequest request, HttpServletResponse response, Model model) {
-
-		yourDebug();
-
 		Page<QrtzTriggers> page = qrtzTriggersService.findPage(new Page<QrtzTriggers>(request, response), qrtzTriggers);
 		model.addAttribute("page", page);
 		return "modules/qrtz/qrtzTriggersList";
-	}
-
-	private void yourDebug() {
-		logger.debug("yourDebug");
-		try {
-			System.out.println(quartzClusterMain.getScheduler().isStarted());
-		} catch (SchedulerException e) {
-			e.printStackTrace();
-		}
 	}
 
 }

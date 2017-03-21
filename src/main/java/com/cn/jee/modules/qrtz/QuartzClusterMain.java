@@ -9,6 +9,7 @@ import javax.annotation.PostConstruct;
 
 import org.quartz.CronTrigger;
 import org.quartz.JobDetail;
+import org.quartz.JobKey;
 import org.quartz.Scheduler;
 import org.quartz.SchedulerException;
 import org.quartz.Trigger;
@@ -147,6 +148,40 @@ public class QuartzClusterMain {
 	 */
 	public Scheduler getScheduler() {
 		return scheduler.getScheduler();
+	}
+
+	/**
+	 * 暂停一个任务
+	 * 
+	 * @param name
+	 * @param group
+	 * @return
+	 */
+	public boolean pauseJob(String name, String group) {
+		try {
+			scheduler.getScheduler().pauseJob(new JobKey(name, group));
+		} catch (SchedulerException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * 恢复一个任务
+	 * 
+	 * @param name
+	 * @param group
+	 * @return
+	 */
+	public boolean resumeJob(String name, String group) {
+		try {
+			scheduler.getScheduler().resumeJob(new JobKey(name, group));
+		} catch (SchedulerException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
 	}
 
 }
