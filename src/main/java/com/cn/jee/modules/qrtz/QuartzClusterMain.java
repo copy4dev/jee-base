@@ -11,9 +11,7 @@ import org.quartz.CronTrigger;
 import org.quartz.JobDetail;
 import org.quartz.Scheduler;
 import org.quartz.SchedulerException;
-import org.quartz.SchedulerFactory;
 import org.quartz.Trigger;
-import org.quartz.impl.StdSchedulerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +36,7 @@ import org.springframework.stereotype.Component;
  * 
  *          修改记录: 下面填写修改的内容以及修改的日期<br/>
  *          1.2013-11-27 下午5:49:37 yjf new <br/>
+ *          2.2017-03-21 下午5:49:37 ccp 添加备注 <br/>
  */
 @Component
 @Lazy(false)
@@ -140,20 +139,14 @@ public class QuartzClusterMain {
 	}
 
 	/**
-	 * 创建一个调度对象
+	 * 获取一个scheduler调度对象<br/>
+	 * 通过scheduler调度对象，可以灵活管理调度器
 	 * 
 	 * @return
 	 * @throws SchedulerException
 	 */
 	public Scheduler getScheduler() {
-		SchedulerFactory sf = new StdSchedulerFactory();
-		Scheduler scheduler = null;
-		try {
-			scheduler = sf.getScheduler();
-		} catch (SchedulerException e) {
-			e.printStackTrace();
-		}
-		return scheduler;
+		return scheduler.getScheduler();
 	}
 
 }

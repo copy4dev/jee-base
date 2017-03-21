@@ -7,9 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.quartz.Scheduler;
 import org.quartz.SchedulerException;
-import org.quartz.impl.StdSchedulerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +20,7 @@ import com.cn.jee.common.config.Global;
 import com.cn.jee.common.persistence.Page;
 import com.cn.jee.common.utils.StringUtils;
 import com.cn.jee.common.web.BaseController;
+import com.cn.jee.modules.qrtz.QuartzClusterMain;
 import com.cn.jee.modules.qrtz.entity.QrtzTriggers;
 import com.cn.jee.modules.qrtz.service.QrtzTriggersService;
 
@@ -37,6 +36,8 @@ public class QrtzTriggersController extends BaseController {
 
 	@Autowired
 	private QrtzTriggersService qrtzTriggersService;
+	@Autowired
+	private QuartzClusterMain quartzClusterMain;
 
 	@ModelAttribute
 	public QrtzTriggers get(@RequestParam(value = "schedName", required = false) String schedName, @RequestParam(value = "triggerName", required = false) String triggerName, @RequestParam(value = "triggerGroup", required = false) String triggerGroup) {
@@ -96,9 +97,12 @@ public class QrtzTriggersController extends BaseController {
 	}
 
 	private void yourDebug() {
-		logger.debug("xxoo");
-		Scheduler scheduler;
-		
+		logger.debug("yourDebug");
+		try {
+			System.out.println(quartzClusterMain.getScheduler().isStarted());
+		} catch (SchedulerException e) {
+			e.printStackTrace();
+		}
 	}
 
 }
