@@ -52,7 +52,7 @@
 				<th>触发器类型</th>
 				<th>时间表达式</th>
 				<th>描述</th>
- 				<%--<shiro:hasPermission name="qrtz:qrtzTriggers:edit"><th>操作</th></shiro:hasPermission>--%>
+ 				<shiro:hasPermission name="qrtz:qrtzTriggers:edit"><th>操作</th></shiro:hasPermission>
 			</tr>
 		</thead>
 		<tbody>
@@ -89,6 +89,9 @@
     				<a href="${ctx}/qrtz/qrtzTriggers/form?id=${qrtzTriggers.id}">修改</a>
 					<a href="${ctx}/qrtz/qrtzTriggers/delete?id=${qrtzTriggers.id}" onclick="return confirmx('确认要删除该触发器记录吗？', this.href)">删除</a>
 				</td></shiro:hasPermission>--%>
+				<shiro:hasPermission name="qrtz:qrtzTriggers:edit"><td>
+					<a href="${ctx}/qrtz/qrtzTriggers/option?jobName=${qrtzTriggers.jobName}&jobGroup=${qrtzTriggers.jobGroup}" onclick="return confirmx('确认要更改触发器状态吗？', this.href)">删除</a>
+				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>
 		</tbody>
