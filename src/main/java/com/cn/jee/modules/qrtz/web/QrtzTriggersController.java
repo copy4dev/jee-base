@@ -32,7 +32,7 @@ import com.cn.jee.modules.qrtz.service.QrtzTriggersService;
  */
 @Controller
 @RequestMapping(value = "${adminPath}/qrtz/qrtzTriggers")
-public class QrtzTriggersController extends BaseController {
+public class QrtzTriggersController extends BaseController implements QuartzContacts {
 
 	@Autowired
 	private QrtzTriggersService qrtzTriggersService;
@@ -88,11 +88,11 @@ public class QrtzTriggersController extends BaseController {
 	@RequiresPermissions("qrtz:qrtzTriggers:view")
 	@RequestMapping(value = { "option" })
 	public String option(QrtzTriggers qrtzTriggers, HttpServletRequest request, HttpServletResponse response, Model model) {
-		//更改任务状态
+		// 更改任务状态
 		changeStatus(qrtzTriggers);
 		Page<QrtzTriggers> page = qrtzTriggersService.findPage(new Page<QrtzTriggers>(request, response), qrtzTriggers);
 		model.addAttribute("page", page);
-		return "modules/qrtz/qrtzTriggersList";
+		return "redirect:" + Global.getAdminPath() + "/qrtz/qrtzTriggers/?repage";
 	}
 
 	/**
@@ -102,15 +102,16 @@ public class QrtzTriggersController extends BaseController {
 	 */
 	private final void changeStatus(QrtzTriggers qrtzTriggers) {
 		boolean success = false;
-		if (QuartzContacts.PAUSED.equals(qrtzTriggers.getTriggerState())) {
-			//恢复
+		String status = qrtzTriggers.getTriggerState();
+		if (QRTZ_TRIGGER_PAUSED.equals(status)) {
+			// 恢复
 			success = quartzClusterMain.resumeJob(qrtzTriggers.getJobName(), qrtzTriggers.getJobGroup());
-		} else if (QuartzContacts.ACQUIRED.equals(qrtzTriggers.getTriggerState())) {
-			//挂起
+		} else if (QRTZ_TRIGGER_ACQUIRED.equals(status) || QRTZ_TRIGGER_WAITING.equals(status)) {
+			// 挂起
 			success = quartzClusterMain.pauseJob(qrtzTriggers.getJobName(), qrtzTriggers.getJobGroup());
 		}
 		if (!success) {
-			//异常处理
+			// 异常处理
 			logger.debug("error");
 		}
 	}

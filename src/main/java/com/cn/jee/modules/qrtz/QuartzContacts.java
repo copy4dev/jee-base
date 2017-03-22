@@ -6,11 +6,14 @@ package com.cn.jee.modules.qrtz;
  * @author Admin
  * @version 2017年3月21日 下午10:25:12
  */
-public class QuartzContacts {
+public interface QuartzContacts {
 
 	/** 触发器状态-挂起 */
-	public final static String PAUSED = "PAUSED";
+	public final static String QRTZ_TRIGGER_PAUSED = "PAUSED";
 
-	/** 触发器状态-启动 */
-	public final static String ACQUIRED = "ACQUIRED";
+	/** 触发器状态-运行 */
+	public final static String QRTZ_TRIGGER_ACQUIRED = "ACQUIRED"; 
+	
+	/** 触发器状态-等待 */
+	public final static String QRTZ_TRIGGER_WAITING = "WAITING";
 }

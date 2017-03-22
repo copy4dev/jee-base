@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ include file="/WEB-INF/views/include/taglib.jsp"%>
+<%@ include file="/WEB-INF/views/include/usrtaglib.jsp"%>
 <html>
 <head>
 	<title>触发器记录管理</title>
@@ -45,8 +46,8 @@
 			<tr>
 				<th>触发器名称</th>
 				<th>任务名称</th>
-				<th>下次触发时间</th>
 				<th>上次触发时间</th>
+				<th>下次触发时间</th>
 				<th>优先级</th>
 				<th>触发器状态</th>
 				<th>触发器类型</th>
@@ -61,14 +62,14 @@
 				<td><a href="${ctx}/qrtz/qrtzTriggers/form?schedName=${qrtzTriggers.schedName}&triggerName=${qrtzTriggers.triggerName}&triggerGroup=${qrtzTriggers.triggerGroup}">
 					${qrtzTriggers.triggerName}
 				</a></td>
-				<td>
+				<td><a href="${ctx}/qrtz/qrtzTriggers/form?schedName=${qrtzTriggers.schedName}&triggerName=${qrtzTriggers.triggerName}&triggerGroup=${qrtzTriggers.triggerGroup}">
 					${qrtzTriggers.jobName}
+				</a></td>
+				<td>
+					<fmt:formatDate value="${qrtzTriggers.prevFireDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
 				<td>
 					<fmt:formatDate value="${qrtzTriggers.nextFireDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
-				</td>
-				<td>
-					<fmt:formatDate value="${qrtzTriggers.prevFireDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
 				<td>
 					${qrtzTriggers.priority}
@@ -90,7 +91,9 @@
 					<a href="${ctx}/qrtz/qrtzTriggers/delete?id=${qrtzTriggers.id}" onclick="return confirmx('确认要删除该触发器记录吗？', this.href)">删除</a>
 				</td></shiro:hasPermission>--%>
 				<shiro:hasPermission name="qrtz:qrtzTriggers:edit"><td>
-					<a href="${ctx}/qrtz/qrtzTriggers/option?jobName=${qrtzTriggers.jobName}&jobGroup=${qrtzTriggers.jobGroup}" onclick="return confirmx('确认要更改触发器状态吗？', this.href)">删除</a>
+					<a href="${ctx}/qrtz/qrtzTriggers/option?jobName=${qrtzTriggers.jobName}&jobGroup=${qrtzTriggers.jobGroup}&triggerState=${qrtzTriggers.triggerState}" onclick="return confirmx('确认要更改触发器状态吗？', this.href)">
+						${qrtzPaused == qrtzTriggers.triggerState ? '恢复' : '挂起'}
+					</a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

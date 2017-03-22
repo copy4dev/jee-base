@@ -5,4 +5,9 @@
 3.定时任务的配置(xml与日志)
 3.1定时任务-ok
 3.2定时任务执行监控-ok
-3.3修改执行表达式
+3.3修改执行表达式-ok
+3.4挂起恢复任务-ok
+
+#有可能产生java.lang.OutOfMemoryError: PermGen 以及quartz线程数过多
+
+4.单号池
