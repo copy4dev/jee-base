@@ -7,14 +7,14 @@ public class SnGen {
 	public static void main(String[] args) {
 		long startT = System.currentTimeMillis();
 
-		// 通过UUID的哈希值产生SN
+		// 通过UUID的哈希值产生16位SN
 		getSnByUUIdTest();
 
 		long endT = System.currentTimeMillis();
 		System.out.println("耗时：" + (endT - startT));
 	}
 
-	/** 通过UUID的哈希值产生SN - 大于10000有可能重复 */
+	/** 通过UUID的哈希值产生16位SN - 大于10000有可能重复 */
 	public synchronized static String getSnByUUId() {
 		int machineId = 1;// 最大支持1-9个集群机器部署
 		int hashCodeV = UUID.randomUUID().toString().hashCode();
@@ -28,7 +28,7 @@ public class SnGen {
 		return machineId + String.format("%015d", hashCodeV);
 	}
 
-	/** 通过UUID的哈希值产生SN - 测试 */
+	/** 通过UUID的哈希值产生16位SN - 测试 */
 	private final static void getSnByUUIdTest() {
 		int s = 10000;
 		long[] ary = new long[s];
