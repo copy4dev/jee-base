@@ -8,6 +8,12 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.cn.jee.modules.log.service.ModLogService;
 
+/**
+ * jUnit测试小例子
+ * 
+ * @author 1002360
+ * @version 2017年3月30日上午9:31:07 1002360 TODO
+ */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:/spring-context.xml" })
 public class UtilsTest {
