@@ -83,6 +83,8 @@ public class QuartzClusterMain {
 			}
 		}
 
+		logger.info("注意quartz数据表表名的大小写");
+		logger.info("注意mySQL数据库表名大小写敏感");
 	}
 
 	/**

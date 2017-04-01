@@ -8,6 +8,9 @@ package com.cn.jee.modules.utils;
  */
 public class Contacts {
 
+	/** 模块日志实体名称 */
+	public final static String MOD_LOG = "modLog";
+	
 	/** 模块日志数据权限字段：日志类型 */
 	public final static String MOD_LOG_TYPE = "logType";
 

@@ -103,6 +103,7 @@ public class ProtoStuffSerializerUtil {
 
 		System.out.println("p.getId() = " + p.getId() + " - result.getId() = " + result.getId());
 		System.out.println("p.getName() = " + p.getName() + " - result.getName() = " + result.getName());
+
 	}
 
 }

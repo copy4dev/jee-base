@@ -202,17 +202,18 @@ public class UserUtils {
 		}
 		return recordList;
 	}
-	
+
 	/**
 	 * 获取当前用户拥有某一字段的数据权限列表
 	 * 
+	 * @param entityName
 	 * @param fieldName
 	 * @return
 	 */
-	public static List<String> getRecordFieldList(String fieldName) {
-		List<Record> recordList = getRecordList(fieldName);
-		List<String> sList=Lists.newArrayList();
-		for(int i=0;i<recordList.size();i++){
+	public static List<String> getRecordFieldList(String entityName, String fieldName) {
+		List<Record> recordList = getRecordList(entityName, fieldName);
+		List<String> sList = Lists.newArrayList();
+		for (int i = 0; i < recordList.size(); i++) {
 			sList.add(recordList.get(i).getValue());
 		}
 		return sList;
@@ -221,25 +222,33 @@ public class UserUtils {
 	/**
 	 * 获取当前用户拥有某一字段的数据权限列表
 	 * 
+	 * @param entityName
 	 * @param fieldName
 	 * @return
 	 */
-	public static List<Record> getRecordList(String fieldName) {
+	public static List<Record> getRecordList(String entityName, String fieldName) {
 		List<Record> recordList = getUserRecordList();
-		String id=null;
-		for(Record record: recordList){
-			if(fieldName.equals(record.getValue())){
-				id=record.getId();
+		String entityId = null;
+		for (Record record : recordList) {
+			if (entityName.equals(record.getValue())) {
+				entityId = record.getId();
+				break;
+			}
+		}
+		String fieldId=null;
+		for (Record record : recordList) {
+			if (entityId.equals(record.getParentId())&&fieldName.equals(record.getValue())) {
+				fieldId = record.getId();
 				break;
 			}
 		}
 		Iterator<Record> it = recordList.iterator();
-		Record record=null;
-		while(it.hasNext()){
+		Record record = null;
+		while (it.hasNext()) {
 			record = it.next();
-		    if(!id.equals(record.getParentId())){
-		        it.remove();
-		    }
+			if (!fieldId.equals(record.getParentId())) {
+				it.remove();
+			}
 		}
 		return recordList;
 	}

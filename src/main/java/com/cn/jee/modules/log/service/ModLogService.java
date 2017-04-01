@@ -3,18 +3,25 @@
  */
 package com.cn.jee.modules.log.service;
 
+import java.util.Iterator;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cn.jee.common.persistence.Page;
 import com.cn.jee.common.service.CrudService;
-import com.cn.jee.modules.log.entity.ModLog;
+import com.cn.jee.common.utils.StringUtils;
 import com.cn.jee.modules.log.dao.ModLogDao;
+import com.cn.jee.modules.log.entity.ModLog;
+import com.cn.jee.modules.sys.dao.RecordDao;
+import com.cn.jee.modules.sys.utils.UserUtils;
+import com.cn.jee.modules.utils.Contacts;
 
 /**
  * 模块日志Service
+ * 
  * @author admin
  * @version 2017-02-10
  */
@@ -22,28 +29,35 @@ import com.cn.jee.modules.log.dao.ModLogDao;
 @Transactional(readOnly = true)
 public class ModLogService extends CrudService<ModLogDao, ModLog> {
 
+	@Autowired
+	private RecordDao recordDao;
+
 	public ModLog get(String id) {
 		return super.get(id);
 	}
-	
+
 	public List<ModLog> findList(ModLog modLog) {
+		// 数据权限过滤器
+		usrDateFilter(modLog);
 		return super.findList(modLog);
 	}
-	
+
 	public Page<ModLog> findPage(Page<ModLog> page, ModLog modLog) {
+		// 数据权限过滤器
+		usrDateFilter(modLog);
 		return super.findPage(page, modLog);
 	}
-	
+
 	@Transactional(readOnly = false)
 	public void save(ModLog modLog) {
 		super.save(modLog);
 	}
-	
+
 	@Transactional(readOnly = false)
 	public void delete(ModLog modLog) {
 		super.delete(modLog);
 	}
-	
+
 	/**
 	 * 日志写入
 	 * 
@@ -62,10 +76,49 @@ public class ModLogService extends CrudService<ModLogDao, ModLog> {
 
 		StackTraceElement[] trace = Thread.currentThread().getStackTrace();
 		int idx = trace.length - 1;
-		modLog.setEntityName(trace[idx].getClassName());//类名
-		modLog.setBisMethod(trace[idx].getMethodName());//方法名
+		modLog.setEntityName(trace[idx].getClassName());// 类名
+		modLog.setBisMethod(trace[idx].getMethodName());// 方法名
 
 		super.save(modLog);
 	}
-	
+
+	/**
+	 * 数据权限过滤器
+	 * 
+	 * @param modLog
+	 * @return
+	 */
+	private final ModLog usrDateFilter(ModLog modLog) {
+
+		/* modLog-logType-数据过滤 */
+
+		String logType = modLog.getLogType();
+		// 查找用户拥有的数据权限
+		List<String> modLogTypeList = UserUtils.getRecordFieldList(Contacts.MOD_LOG, Contacts.MOD_LOG_TYPE);
+
+		if (StringUtils.isBlank(logType)) {
+			// 如果没有指定目标字段(logType),则使用数据权限列表进行查询
+			modLog.setLogTypeList(modLogTypeList);
+		} else {
+			Iterator<String> it = modLogTypeList.iterator();
+			String s = null;
+			while (true) {
+				s = it.next();
+				if (logType.equals(s)) {
+					// 指定了目标字段，且包含在权限列表内
+					break;
+				}
+				if (it.hasNext()) {
+					continue;
+				} else {
+					// 指定了目标字段，且不 包含在权限列表内
+					modLog.setLogType("");
+					break;
+				}
+			}
+		}
+
+		return modLog;
+	}
+
 }
