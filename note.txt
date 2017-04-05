@@ -15,4 +15,3 @@
 
 #有可能产生java.lang.OutOfMemoryError: PermGen 以及quartz线程数过多
 
-4.单号池
