@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50528
 File Encoding         : 65001
 
-Date: 2017-03-20 17:37:48
+Date: 2017-04-05 18:26:00
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -278,7 +278,7 @@ CREATE TABLE `qrtz_cron_triggers` (
 -- ----------------------------
 -- Records of qrtz_cron_triggers
 -- ----------------------------
-INSERT INTO `qrtz_cron_triggers` VALUES ('quartzScheduler', 'testjobTrigger', 'DEFAULT', '0 0/5 * * * ?', 'Asia/Shanghai');
+INSERT INTO `qrtz_cron_triggers` VALUES ('quartzScheduler', 'testjobTrigger', 'DEFAULT', '0 0/1 * * * ?', 'Asia/Shanghai');
 
 -- ----------------------------
 -- Table structure for qrtz_fired_triggers
@@ -341,6 +341,7 @@ CREATE TABLE `qrtz_locks` (
 -- ----------------------------
 -- Records of qrtz_locks
 -- ----------------------------
+INSERT INTO `qrtz_locks` VALUES ('quartzScheduler', 'STATE_ACCESS');
 INSERT INTO `qrtz_locks` VALUES ('quartzScheduler', 'TRIGGER_ACCESS');
 
 -- ----------------------------
@@ -372,6 +373,7 @@ CREATE TABLE `qrtz_scheduler_state` (
 -- ----------------------------
 -- Records of qrtz_scheduler_state
 -- ----------------------------
+INSERT INTO `qrtz_scheduler_state` VALUES ('quartzScheduler', 'NON_CLUSTERED', '1491387790921', '20000');
 
 -- ----------------------------
 -- Table structure for qrtz_simple_triggers
@@ -448,7 +450,7 @@ CREATE TABLE `qrtz_triggers` (
 -- ----------------------------
 -- Records of qrtz_triggers
 -- ----------------------------
-INSERT INTO `qrtz_triggers` VALUES ('quartzScheduler', 'testjobTrigger', 'DEFAULT', 'testjob', 'DEFAULT', '123', '1490002800000', '1490002560000', '0', 'WAITING', 'CRON', '1490002207000', '0', null, '0', '');
+INSERT INTO `qrtz_triggers` VALUES ('quartzScheduler', 'testjobTrigger', 'DEFAULT', 'testjob', 'DEFAULT', null, '1491387840000', '1491387780000', '0', 'WAITING', 'CRON', '1491387750000', '0', null, '0', '');
 
 -- ----------------------------
 -- Table structure for sys_area
@@ -717,6 +719,7 @@ INSERT INTO `sys_menu` VALUES ('9', '7', '0,1,2,3,7,', '修改', '40', null, nul
 INSERT INTO `sys_menu` VALUES ('99bbea875afe4502b326080c258dec99', '3', '0,1,2,3,', '调度管理', '120', '', '', 'spinner', '1', '', '1', '2017-03-18 17:25:43', '1', '2017-03-18 18:02:02', '', '0');
 INSERT INTO `sys_menu` VALUES ('b5256daef2f7499c8e3b8e0a145bd93d', '99bbea875afe4502b326080c258dec99', '0,1,2,3,99bbea875afe4502b326080c258dec99,', '触发器管理', '30', '/qrtz/qrtzTriggers', '', 'fullscreen', '1', '', '1', '2017-03-18 18:01:14', '1', '2017-03-18 18:07:44', '', '0');
 INSERT INTO `sys_menu` VALUES ('cd88e08b61cd4fc191da587054064bf6', 'b5256daef2f7499c8e3b8e0a145bd93d', '0,1,2,3,99bbea875afe4502b326080c258dec99,b5256daef2f7499c8e3b8e0a145bd93d,', '查看', '30', '', '', '', '0', 'qrtz:qrtzTriggers:view', '1', '2017-03-18 17:26:09', '1', '2017-03-18 18:01:29', '', '0');
+INSERT INTO `sys_menu` VALUES ('d8a3df9c15874d1798a54698bbbe922e', '67', '0,1,2,67,', '模块日志', '50', '/log/modLog', '', 'pencil', '1', 'log:modLog:view', '1', '2017-04-01 09:33:51', '1', '2017-04-05 18:22:56', '', '0');
 
 -- ----------------------------
 -- Table structure for sys_office
@@ -844,7 +847,7 @@ CREATE TABLE `sys_role` (
 -- ----------------------------
 -- Records of sys_role
 -- ----------------------------
-INSERT INTO `sys_role` VALUES ('1', '2', '系统管理员', 'dept', 'assignment', '1', '1', '1', '1', '2013-05-27 08:00:00', '1', '2017-03-18 18:03:44', '', '0');
+INSERT INTO `sys_role` VALUES ('1', '2', '系统管理员', 'dept', 'assignment', '1', '1', '1', '1', '2013-05-27 08:00:00', '1', '2017-04-05 13:15:34', '', '0');
 INSERT INTO `sys_role` VALUES ('2', '1', '公司管理员', 'hr', 'assignment', '2', null, '1', '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '0');
 INSERT INTO `sys_role` VALUES ('3', '1', '本公司管理员', 'a', 'assignment', '3', null, '1', '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '0');
 INSERT INTO `sys_role` VALUES ('4', '1', '部门管理员', 'b', 'assignment', '4', null, '1', '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '0');
@@ -916,6 +919,7 @@ INSERT INTO `sys_role_menu` VALUES ('1', '9');
 INSERT INTO `sys_role_menu` VALUES ('1', '99bbea875afe4502b326080c258dec99');
 INSERT INTO `sys_role_menu` VALUES ('1', 'b5256daef2f7499c8e3b8e0a145bd93d');
 INSERT INTO `sys_role_menu` VALUES ('1', 'cd88e08b61cd4fc191da587054064bf6');
+INSERT INTO `sys_role_menu` VALUES ('1', 'd8a3df9c15874d1798a54698bbbe922e');
 INSERT INTO `sys_role_menu` VALUES ('2', '1');
 INSERT INTO `sys_role_menu` VALUES ('2', '10');
 INSERT INTO `sys_role_menu` VALUES ('2', '11');
@@ -1145,9 +1149,11 @@ CREATE TABLE `sys_role_record` (
 -- Records of sys_role_record
 -- ----------------------------
 INSERT INTO `sys_role_record` VALUES ('1', '37193ae53898443a9bd724c63efe6401');
+INSERT INTO `sys_role_record` VALUES ('1', '44e1e95eda4a414d804eb085b91137b6');
 INSERT INTO `sys_role_record` VALUES ('1', '4e54bc90a62d48e4b257ef7f14fdfa2d');
 INSERT INTO `sys_role_record` VALUES ('1', '61d38d4ffaac4ecbb387997d39ce0957');
 INSERT INTO `sys_role_record` VALUES ('1', '7da83f9c0d634baca8c41a33d227e763');
+INSERT INTO `sys_role_record` VALUES ('1', 'e2b7f9a79b024b65bcfbdce7146d692d');
 INSERT INTO `sys_role_record` VALUES ('1', 'e6f653f32f444b5b8449a724850131f0');
 
 -- ----------------------------
@@ -1187,7 +1193,7 @@ CREATE TABLE `sys_user` (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES ('1', '1', '2', 'thinkgem', '02a3f0772fcca9f415adc990734b45c6f059c7d33ee28362c4852032', '0001', '系统管理员', 'thinkgem@163.com', '8675', '8675', null, null, '0:0:0:0:0:0:0:1', '2017-03-20 17:31:16', '1', '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', '最高管理员', '0');
+INSERT INTO `sys_user` VALUES ('1', '1', '2', 'thinkgem', '02a3f0772fcca9f415adc990734b45c6f059c7d33ee28362c4852032', '0001', '系统管理员', 'thinkgem@163.com', '8675', '8675', null, null, '0:0:0:0:0:0:0:1', '2017-04-05 18:23:01', '1', '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', '最高管理员', '0');
 
 -- ----------------------------
 -- Table structure for sys_user_role

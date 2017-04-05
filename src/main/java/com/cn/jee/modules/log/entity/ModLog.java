@@ -11,6 +11,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.google.common.collect.Lists;
 import com.cn.jee.common.persistence.DataEntity;
+import com.cn.jee.common.utils.excel.annotation.ExcelField;
 
 /**
  * 模块日志Entity
@@ -41,6 +42,7 @@ public class ModLog extends DataEntity<ModLog> {
 	}
 
 	@Length(min=0, max=1, message="日志类型长度必须介于 0 和 1 之间")
+	@ExcelField(title="日志类型", type=0, align=0, sort=10)
 	public String getLogType() {
 		return logType;
 	}
@@ -50,6 +52,7 @@ public class ModLog extends DataEntity<ModLog> {
 	}
 	
 	@Length(min=0, max=2, message="模块类型长度必须介于 0 和 2 之间")
+	@ExcelField(title="模块类型", type=0, align=0, sort=20)
 	public String getModuleType() {
 		return moduleType;
 	}
@@ -59,6 +62,7 @@ public class ModLog extends DataEntity<ModLog> {
 	}
 	
 	@Length(min=0, max=50, message="实体名长度必须介于 0 和 50 之间")
+	@ExcelField(title="实体名", type=0, align=0, sort=30)
 	public String getEntityName() {
 		return entityName;
 	}
@@ -68,6 +72,7 @@ public class ModLog extends DataEntity<ModLog> {
 	}
 	
 	@Length(min=0, max=50, message="业务方法长度必须介于 0 和 50 之间")
+	@ExcelField(title="业务方法", type=0, align=0, sort=40)
 	public String getBisMethod() {
 		return bisMethod;
 	}
@@ -77,6 +82,7 @@ public class ModLog extends DataEntity<ModLog> {
 	}
 	
 	@Length(min=0, max=100, message="摘要长度必须介于 0 和 100 之间")
+	@ExcelField(title="摘要", type=0, align=0, sort=50)
 	public String getNotes() {
 		return notes;
 	}
@@ -85,6 +91,7 @@ public class ModLog extends DataEntity<ModLog> {
 		this.notes = notes;
 	}
 	
+	@ExcelField(title="明细", type=0, align=0, sort=60)
 	public String getMsg() {
 		return msg;
 	}
@@ -94,6 +101,7 @@ public class ModLog extends DataEntity<ModLog> {
 	}
 	
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@ExcelField(title="创建时间", type=1, align=0, sort=70)
 	public Date getCreateTime() {
 		return createTime;
 	}

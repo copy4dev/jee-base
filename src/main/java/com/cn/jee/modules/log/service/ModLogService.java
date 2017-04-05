@@ -42,7 +42,7 @@ public class ModLogService extends CrudService<ModLogDao, ModLog> {
 		usrDateFilter(modLog);
 
 		// 生成数据权限过滤条件（dsf为dataScopeFilter的简写，在xml中使用 ${sqlMap.dsf}调用权限SQL）
-		String dsfSql = aaa(UserUtils.getUser());
+		String dsfSql = dsf(UserUtils.getUser());
 		if (StringUtils.isNotBlank(dsfSql)) {
 			modLog.getSqlMap().put("dsf", dsfSql);
 		}
@@ -127,10 +127,20 @@ public class ModLogService extends CrudService<ModLogDao, ModLog> {
 		return modLog;
 	}
 
-	private final String aaa(User user) {
+	/**
+	 * 使用Java代码组装数据权限SQL语句
+	 * 
+	 * @param user
+	 * @return
+	 */
+	private final String dsf(User user) {
 		String sql = null;
 		// 填写需要组装SQL的逻辑...
 		return sql;
 	}
+
+//	private final void dataExport(ModLog modLog) {
+//
+//	}
 
 }
