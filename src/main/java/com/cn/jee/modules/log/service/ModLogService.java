@@ -16,6 +16,7 @@ import com.cn.jee.common.utils.StringUtils;
 import com.cn.jee.modules.log.dao.ModLogDao;
 import com.cn.jee.modules.log.entity.ModLog;
 import com.cn.jee.modules.sys.dao.RecordDao;
+import com.cn.jee.modules.sys.entity.User;
 import com.cn.jee.modules.sys.utils.UserUtils;
 import com.cn.jee.modules.utils.Contacts;
 
@@ -39,6 +40,12 @@ public class ModLogService extends CrudService<ModLogDao, ModLog> {
 	public List<ModLog> findList(ModLog modLog) {
 		// 数据权限过滤器
 		usrDateFilter(modLog);
+
+		// 生成数据权限过滤条件（dsf为dataScopeFilter的简写，在xml中使用 ${sqlMap.dsf}调用权限SQL）
+		String dsfSql = aaa(UserUtils.getUser());
+		if (StringUtils.isNotBlank(dsfSql)) {
+			modLog.getSqlMap().put("dsf", dsfSql);
+		}
 		return super.findList(modLog);
 	}
 
@@ -117,8 +124,13 @@ public class ModLogService extends CrudService<ModLogDao, ModLog> {
 				}
 			}
 		}
-
 		return modLog;
+	}
+
+	private final String aaa(User user) {
+		String sql = null;
+		// 填写需要组装SQL的逻辑...
+		return sql;
 	}
 
 }
