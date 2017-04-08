@@ -18,7 +18,7 @@ import com.cn.jee.modules.log.entity.ModLog;
 import com.cn.jee.modules.sys.dao.RecordDao;
 import com.cn.jee.modules.sys.entity.User;
 import com.cn.jee.modules.sys.utils.UserUtils;
-import com.cn.jee.modules.utils.Contacts;
+import com.cn.jee.modules.util.consts.ModLogConsts;
 
 /**
  * 模块日志Service
@@ -101,7 +101,7 @@ public class ModLogService extends CrudService<ModLogDao, ModLog> {
 
 		String logType = modLog.getLogType();
 		// 查找用户拥有的数据权限
-		List<String> modLogTypeList = UserUtils.getRecordFieldList(Contacts.MOD_LOG, Contacts.MOD_LOG_TYPE);
+		List<String> modLogTypeList = UserUtils.getRecordFieldList(ModLogConsts.MOD_LOG, ModLogConsts.MOD_LOG_TYPE);
 
 		if (StringUtils.isBlank(logType)) {
 			// 如果没有指定目标字段(logType),则使用数据权限列表进行查询

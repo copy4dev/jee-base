@@ -6,7 +6,7 @@ package com.cn.jee.modules.qrtz;
  * @author Admin
  * @version 2017年3月21日 下午10:25:12
  */
-public interface QuartzContacts {
+public interface QuartzConsts {
 
 	/** 触发器状态-挂起 */
 	public final static String QRTZ_TRIGGER_PAUSED = "PAUSED";

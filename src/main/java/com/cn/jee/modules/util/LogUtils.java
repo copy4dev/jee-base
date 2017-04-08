@@ -1,9 +1,9 @@
-package com.cn.jee.modules.utils;
+package com.cn.jee.modules.util;
 
 import com.cn.jee.common.utils.SpringContextHolder;
 import com.cn.jee.modules.log.service.ModLogService;
 
-public class LogUtil {
+public class LogUtils {
 
 	private static ModLogService bsLicenseDefinedService = SpringContextHolder.getBean(ModLogService.class);
 

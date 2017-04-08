@@ -11,10 +11,10 @@ import com.cn.jee.common.db.DynamicDataSource;
  */
 public class DynamicDataSourceTest {
 
-	public static void main(String[] args) {
-		DynamicDataSource.setCurrentLookupKey("dataSource2nd");// 切换数据源dataSource2nd
-		System.out.println("===============警告:数据库方言并没有切换===============");
-		System.err.println("=======Global.getConfig('jdbc.def.type')=======");
-		DynamicDataSource.setCurrentLookupKey("dataSourceDef");// 切换回默认数据源dataSourceDef
-	}
+    public static void main(String[] args) {
+        DynamicDataSource.setCurrentLookupKey("dataSource2nd");// 切换数据源dataSource2nd
+        System.out.println("===============警告:数据库方言并没有切换===============");
+        System.err.println("=======Global.getConfig('jdbc.def.type')=======");
+        DynamicDataSource.setCurrentLookupKey("dataSourceDef");// 切换回默认数据源dataSourceDef
+    }
 }
