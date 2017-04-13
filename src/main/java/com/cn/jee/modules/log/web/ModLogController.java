@@ -107,7 +107,7 @@ public class ModLogController extends BaseController {
 	}
 
 	/** 导入处理 */
-	@RequiresPermissions("log:modLog:edit")
+	@RequiresPermissions("log:modLog:import")
 	@RequestMapping(value = "import", method = RequestMethod.POST)
 	public String importFile(MultipartFile file, RedirectAttributes redirectAttributes) {
 		try {
@@ -144,7 +144,7 @@ public class ModLogController extends BaseController {
 	}
 
 	/** 下载导入用户数据模板 */
-	@RequiresPermissions("log:modLog:view")
+	@RequiresPermissions("log:modLog:export")
 	@RequestMapping(value = "import/template")
 	public String importFileTemplate(HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) {
 		ModLog ml = new ModLog();
