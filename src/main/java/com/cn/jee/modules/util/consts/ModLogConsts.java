@@ -1,12 +1,12 @@
-package com.cn.jee.modules.utils;
+package com.cn.jee.modules.util.consts;
 
 /**
- * 常量存放点
+ * 模块日志常量存放点
  * 
  * @author 1002360
  * @version 2017年2月16日下午8:10:39 1002360 新建
  */
-public class Contacts {
+public class ModLogConsts {
 
 	/** 模块日志实体名称 */
 	public final static String MOD_LOG = "modLog";

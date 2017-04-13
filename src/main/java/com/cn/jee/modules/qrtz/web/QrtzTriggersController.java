@@ -20,7 +20,7 @@ import com.cn.jee.common.persistence.Page;
 import com.cn.jee.common.utils.StringUtils;
 import com.cn.jee.common.web.BaseController;
 import com.cn.jee.modules.qrtz.QuartzClusterMain;
-import com.cn.jee.modules.qrtz.QuartzContacts;
+import com.cn.jee.modules.qrtz.QuartzConsts;
 import com.cn.jee.modules.qrtz.entity.QrtzTriggers;
 import com.cn.jee.modules.qrtz.service.QrtzTriggersService;
 
@@ -32,7 +32,7 @@ import com.cn.jee.modules.qrtz.service.QrtzTriggersService;
  */
 @Controller
 @RequestMapping(value = "${adminPath}/qrtz/qrtzTriggers")
-public class QrtzTriggersController extends BaseController implements QuartzContacts {
+public class QrtzTriggersController extends BaseController implements QuartzConsts {
 
 	@Autowired
 	private QrtzTriggersService qrtzTriggersService;
