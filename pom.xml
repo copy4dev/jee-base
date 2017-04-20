@@ -56,6 +56,9 @@
 		<webserver.port>8180</webserver.port>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<downloadSources>true</downloadSources>
+		<dubbo.version>2.5.3</dubbo.version>
+		<zookeeper.version>3.4.10</zookeeper.version>
+		<zkclient.version>0.10</zkclient.version>
 		
 	</properties>
 	
@@ -330,6 +333,30 @@
 			<version>${shiro.version}</version>
 		</dependency>
 		<!-- SECURITY end -->
+		
+		<!-- dubbo-SOA start -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>dubbo</artifactId>
+			<version>${dubbo.version}</version>
+			<exclusions>  
+		      <exclusion>  
+		        <groupId>org.springframework</groupId>  
+		        <artifactId>spring</artifactId>  
+		      </exclusion>  
+		    </exclusions> 
+		</dependency>
+		<dependency>
+			<groupId>org.apache.zookeeper</groupId>
+			<artifactId>zookeeper</artifactId>
+			<version>${zookeeper.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.101tec</groupId>
+			<artifactId>zkclient</artifactId>
+			<version>${zkclient.version}</version>
+		</dependency>
+		<!-- dubbo-SOA end -->
 		
 		<!-- Activiti -->
 		<dependency>

@@ -16,3 +16,5 @@
 #有可能产生java.lang.OutOfMemoryError: PermGen 以及quartz线程数过多
 
 4.线程池优化-ok
+
+#使用SOA的话，要先进行maven工程拆分 dubbo+zookeeper
