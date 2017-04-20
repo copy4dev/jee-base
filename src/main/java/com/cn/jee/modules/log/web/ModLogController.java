@@ -106,30 +106,30 @@ public class ModLogController extends BaseController {
         }
     }
 
-    /** 导入处理 */
-    @RequiresPermissions("log:modLog:edit")
-    @RequestMapping(value = "import", method = RequestMethod.POST)
-    public String importFile(MultipartFile file, RedirectAttributes redirectAttributes) {
-        try {
-            int successNum = 0;
-            int failureNum = 0;
-            StringBuilder failureMsg = new StringBuilder();
-            ImportExcel ei = new ImportExcel(file, 1, 0);
-            List<ModLog> list = ei.getDataList(ModLog.class);
-            ModLog modLog = null;
-            for (int i = 0, size = list.size(); i < size; i++) {
-                modLog = list.get(i);
-                try {
-                    // 写上你的校验逻辑，然后保存...
-                    modLogService.save(modLog);
-                    successNum++;
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    failureMsg.append("<br/>第 " + i + " 条导入失败：" + e.getMessage());
-                    failureNum++;
-                    continue;
-                }
-            }
+	/** 导入处理 */
+	@RequiresPermissions("log:modLog:import")
+	@RequestMapping(value = "import", method = RequestMethod.POST)
+	public String importFile(MultipartFile file, RedirectAttributes redirectAttributes) {
+		try {
+			int successNum = 0;
+			int failureNum = 0;
+			StringBuilder failureMsg = new StringBuilder();
+			ImportExcel ei = new ImportExcel(file, 1, 0);
+			List<ModLog> list = ei.getDataList(ModLog.class);
+			ModLog modLog = null;
+			for (int i = 0, size = list.size(); i < size; i++) {
+				modLog = list.get(i);
+				try {
+					// 写上你的校验逻辑，然后保存...
+					modLogService.save(modLog);
+					successNum++;
+				} catch (Exception e) {
+					e.printStackTrace();
+					failureMsg.append("<br/>第 " + i + " 条导入失败：" + e.getMessage());
+					failureNum++;
+					continue;
+				}
+			}
 
             if (failureNum > 0) {
                 failureMsg.insert(0, "，失败 " + failureNum + " 条记录，导入信息如下：");
@@ -143,17 +143,17 @@ public class ModLogController extends BaseController {
         return "redirect:" + adminPath + "/log/modLog/list?repage";
     }
 
-    /** 下载导入用户数据模板 */
-    @RequiresPermissions("log:modLog:view")
-    @RequestMapping(value = "import/template")
-    public String importFileTemplate(HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) {
-        ModLog ml = new ModLog();
-        ml.setLogType("i");
-        ml.setModuleType("2");
-        ml.setEntityName("实体");
-        ml.setBisMethod("业务方法");
-        ml.setNotes("摘要");
-        ml.setMsg("明细");
+	/** 下载导入用户数据模板 */
+	@RequiresPermissions("log:modLog:export")
+	@RequestMapping(value = "import/template")
+	public String importFileTemplate(HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) {
+		ModLog ml = new ModLog();
+		ml.setLogType("i");
+		ml.setModuleType("2");
+		ml.setEntityName("实体");
+		ml.setBisMethod("业务方法");
+		ml.setNotes("摘要");
+		ml.setMsg("明细");
 
         try {
             String fileName = "模块日志数据导入模板.xlsx";
