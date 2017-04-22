@@ -32,14 +32,15 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li><a href="${ctx}/qrtz/qrtzTriggers/">触发器记录列表</a></li>
+		<li><a href="${ctx}/qrtz/qrtzTriggers/">触发器列表</a></li>
 		<li class="active">
 			<a href="${ctx}/qrtz/qrtzTriggers/form?schedName=${qrtzTriggers.schedName}&triggerName=${qrtzTriggers.triggerName}&triggerGroup=${qrtzTriggers.triggerGroup}">
-				触发器记录
 				<shiro:hasPermission name="qrtz:qrtzTriggers:edit">${not empty qrtzTriggers.schedName?'修改':'添加'}</shiro:hasPermission>
 				<shiro:lacksPermission name="qrtz:qrtzTriggers:edit">查看</shiro:lacksPermission>
+				触发器
 			</a>
 		</li>
+		<li><a href="${ctx}/qrtz/qrtzJobDetails/">任务属性列表</a></li>
 	</ul><br/>
 	<form:form id="inputForm" modelAttribute="qrtzTriggers" action="${ctx}/qrtz/qrtzTriggers/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>

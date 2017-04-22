@@ -22,6 +22,7 @@
 	<ul class="nav nav-tabs">
 		<li class="active"><a href="${ctx}/qrtz/qrtzTriggers/">触发器列表</a></li>
 		<%--<shiro:hasPermission name="qrtz:qrtzTriggers:edit"><li><a href="${ctx}/qrtz/qrtzTriggers/form">触发器记录添加</a></li></shiro:hasPermission>--%>
+		<li><a href="${ctx}/qrtz/qrtzJobDetails/">任务属性列表</a></li>
 	</ul>
 	<form:form id="searchForm" modelAttribute="qrtzTriggers" action="${ctx}/qrtz/qrtzTriggers/" method="post" class="breadcrumb form-search">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>

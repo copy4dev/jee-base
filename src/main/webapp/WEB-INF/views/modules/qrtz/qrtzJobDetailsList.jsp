@@ -18,7 +18,8 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li class="active"><a href="${ctx}/qrtz/qrtzJobDetails/">任务列表</a></li>
+		<li><a href="${ctx}/qrtz/qrtzTriggers/">触发器列表</a></li>
+		<li class="active"><a href="${ctx}/qrtz/qrtzJobDetails/">任务属性列表</a></li>
 		<%--<shiro:hasPermission name="qrtz:qrtzJobDetails:edit"><li><a href="${ctx}/qrtz/qrtzJobDetails/form">触发器Job明细添加</a></li></shiro:hasPermission>--%>
 	</ul>
 	<form:form id="searchForm" modelAttribute="qrtzJobDetails" action="${ctx}/qrtz/qrtzJobDetails/" method="post" class="breadcrumb form-search">

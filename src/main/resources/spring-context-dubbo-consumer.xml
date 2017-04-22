@@ -26,10 +26,10 @@
 	<!-- <dubbo:registry address="zookeeper://192.168.60.123:2181" /> -->
     
     <!-- 声明需要暴露的服务接口 -->  
-	<dubbo:reference id="dubboGoAssessService" interface="com.cn.chnskin.modules.dubboapi.go.IGoAssessService" />
+<!-- 	<dubbo:reference id="dubboGoAssessService" interface="com.cn.chnskin.modules.dubboapi.go.IGoAssessService" /> -->
 	
 	<!-- 供应商需要暴露的服务接口 -->
-	<dubbo:reference id="dubboProBaseInfoServce" interface="com.cn.chnskin.modules.dubboapi.bs.IProBaseInfoSerivce"/>
+<!-- 	<dubbo:reference id="dubboProBaseInfoServce" interface="com.cn.chnskin.modules.dubboapi.bs.IProBaseInfoSerivce"/> -->
 	
 </beans>
 

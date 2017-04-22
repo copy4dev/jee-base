@@ -30,12 +30,13 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li><a href="${ctx}/qrtz/qrtzJobDetails/">任务列表</a></li>
+		<li><a href="${ctx}/qrtz/qrtzTriggers/">触发器列表</a></li>
+		<li><a href="${ctx}/qrtz/qrtzJobDetails/">任务属性列表</a></li>
 		<li class="active">
 			<a href="${ctx}/qrtz/qrtzJobDetails/form?schedName=${qrtzJobDetails.schedName}&jobName=${qrtzJobDetails.jobName}&jobGroup=${qrtzJobDetails.jobGroup}">
-				任务明细
 				<shiro:hasPermission name="qrtz:qrtzJobDetails:edit">${not empty qrtzJobDetails.schedName?'修改':'添加'}</shiro:hasPermission>
 				<shiro:lacksPermission name="qrtz:qrtzJobDetails:edit">查看</shiro:lacksPermission>
+				任务属性
 			</a>
 		</li>
 	</ul><br/>

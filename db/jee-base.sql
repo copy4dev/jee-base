@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50528
 File Encoding         : 65001
 
-Date: 2017-04-05 18:26:00
+Date: 2017-04-22 09:10:35
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -373,7 +373,7 @@ CREATE TABLE `qrtz_scheduler_state` (
 -- ----------------------------
 -- Records of qrtz_scheduler_state
 -- ----------------------------
-INSERT INTO `qrtz_scheduler_state` VALUES ('quartzScheduler', 'NON_CLUSTERED', '1491387790921', '20000');
+INSERT INTO `qrtz_scheduler_state` VALUES ('quartzScheduler', 'NON_CLUSTERED', '1492823125353', '20000');
 
 -- ----------------------------
 -- Table structure for qrtz_simple_triggers
@@ -450,7 +450,7 @@ CREATE TABLE `qrtz_triggers` (
 -- ----------------------------
 -- Records of qrtz_triggers
 -- ----------------------------
-INSERT INTO `qrtz_triggers` VALUES ('quartzScheduler', 'testjobTrigger', 'DEFAULT', 'testjob', 'DEFAULT', null, '1491387840000', '1491387780000', '0', 'WAITING', 'CRON', '1491387750000', '0', null, '0', '');
+INSERT INTO `qrtz_triggers` VALUES ('quartzScheduler', 'testjobTrigger', 'DEFAULT', 'testjob', 'DEFAULT', null, '1492823160000', '1492823100000', '0', 'WAITING', 'CRON', '1492822184000', '0', null, '0', '');
 
 -- ----------------------------
 -- Table structure for sys_area
@@ -668,7 +668,6 @@ CREATE TABLE `sys_menu` (
 -- ----------------------------
 -- Records of sys_menu
 -- ----------------------------
-INSERT INTO `sys_menu` VALUES ('0a220ac42a4a40aeafe92a73cf5b44a1', '6dbf9c29716b44dabb67a0941b001a98', '0,1,2,3,99bbea875afe4502b326080c258dec99,6dbf9c29716b44dabb67a0941b001a98,', '查看', '30', '', '', '', '0', 'qrtz:qrtzJobDetails:view', '1', '2017-03-18 18:03:05', '1', '2017-03-18 18:03:05', '', '0');
 INSERT INTO `sys_menu` VALUES ('1', '0', '0,', '功能菜单', '0', null, null, null, '1', null, '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '0');
 INSERT INTO `sys_menu` VALUES ('10', '3', '0,1,2,3,', '字典管理', '60', '/sys/dict/', null, 'th-list', '1', null, '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '0');
 INSERT INTO `sys_menu` VALUES ('11', '10', '0,1,2,3,10,', '查看', '30', null, null, null, '0', 'sys:dict:view', '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '0');
@@ -688,15 +687,14 @@ INSERT INTO `sys_menu` VALUES ('23', '2', '0,1,2,', '关于帮助', '990', null,
 INSERT INTO `sys_menu` VALUES ('238c7b87e2cd4fce94fd6bbe380eef0b', '4fdd86a238174e16b068025848396ff0', '0,1,2,3,4fdd86a238174e16b068025848396ff0,', '查看', '30', '', '', '', '0', 'sys:record:view', '1', '2017-02-10 14:27:52', '1', '2017-02-10 14:27:52', '', '0');
 INSERT INTO `sys_menu` VALUES ('24', '23', '0,1,2,23', '官方首页', '30', 'http://jeesite.com', '_blank', null, '0', null, '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '0');
 INSERT INTO `sys_menu` VALUES ('27', '1', '0,1,', '我的面板', '100', null, null, null, '1', null, '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '0');
-INSERT INTO `sys_menu` VALUES ('27253c8813e74c03b37f7abaa2d46319', '6dbf9c29716b44dabb67a0941b001a98', '0,1,2,3,99bbea875afe4502b326080c258dec99,6dbf9c29716b44dabb67a0941b001a98,', '修改', '60', '', '', '', '0', 'qrtz:qrtzJobDetails:edit', '1', '2017-03-18 18:03:26', '1', '2017-03-18 18:03:26', '', '0');
 INSERT INTO `sys_menu` VALUES ('28', '27', '0,1,27,', '个人信息', '30', null, null, null, '1', null, '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '0');
 INSERT INTO `sys_menu` VALUES ('29', '28', '0,1,27,28,', '个人信息', '30', '/sys/user/info', null, 'user', '1', null, '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '0');
 INSERT INTO `sys_menu` VALUES ('2dc3b306c0864f01a1a57de13884e18d', '4fdd86a238174e16b068025848396ff0', '0,1,2,3,4fdd86a238174e16b068025848396ff0,', '修改', '60', '', '', '', '0', 'sys:record:edit', '1', '2017-02-10 14:28:13', '1', '2017-02-10 14:28:13', '', '0');
 INSERT INTO `sys_menu` VALUES ('3', '2', '0,1,2,', '系统设置', '980', null, null, null, '1', null, '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '0');
 INSERT INTO `sys_menu` VALUES ('30', '28', '0,1,27,28,', '修改密码', '40', '/sys/user/modifyPwd', null, 'lock', '1', null, '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '0');
 INSERT INTO `sys_menu` VALUES ('4', '3', '0,1,2,3,', '菜单管理', '30', '/sys/menu/', null, 'list-alt', '1', null, '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '0');
-INSERT INTO `sys_menu` VALUES ('473b7b26d99b43a48616d300034ba456', 'b5256daef2f7499c8e3b8e0a145bd93d', '0,1,2,3,99bbea875afe4502b326080c258dec99,b5256daef2f7499c8e3b8e0a145bd93d,', '修改', '60', '', '', '', '0', 'qrtz:qrtzTriggers:edit', '1', '2017-03-18 17:26:25', '1', '2017-03-18 18:01:42', '', '0');
-INSERT INTO `sys_menu` VALUES ('4fdd86a238174e16b068025848396ff0', '3', '0,1,2,3,', '数据管理', '90', '/sys/record', '', 'lock', '1', '', '1', '2017-02-10 14:22:49', '1', '2017-02-10 14:27:16', '', '0');
+INSERT INTO `sys_menu` VALUES ('473b7b26d99b43a48616d300034ba456', 'b5256daef2f7499c8e3b8e0a145bd93d', '0,1,2,3,b5256daef2f7499c8e3b8e0a145bd93d,', '修改', '60', '', '', '', '0', 'qrtz:qrtzTriggers:edit,qrtz:qrtzJobDetails:edit', '1', '2017-03-18 17:26:25', '1', '2017-04-22 09:04:09', '', '0');
+INSERT INTO `sys_menu` VALUES ('4fdd86a238174e16b068025848396ff0', '3', '0,1,2,3,', '数据管理', '55', '/sys/record', '', 'lock', '1', '', '1', '2017-02-10 14:22:49', '1', '2017-02-10 14:27:16', '', '0');
 INSERT INTO `sys_menu` VALUES ('5', '4', '0,1,2,3,4,', '查看', '30', null, null, null, '0', 'sys:menu:view', '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '0');
 INSERT INTO `sys_menu` VALUES ('56', '71', '0,1,27,71,', '文件管理', '90', '/../static/ckfinder/ckfinder.html', null, 'folder-open', '1', null, '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '0');
 INSERT INTO `sys_menu` VALUES ('57', '56', '0,1,27,40,56,', '查看', '30', null, null, null, '0', 'cms:ckfinder:view', '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '0');
@@ -705,7 +703,6 @@ INSERT INTO `sys_menu` VALUES ('59', '56', '0,1,27,40,56,', '修改', '50', null
 INSERT INTO `sys_menu` VALUES ('6', '4', '0,1,2,3,4,', '修改', '40', null, null, null, '0', 'sys:menu:edit', '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '0');
 INSERT INTO `sys_menu` VALUES ('67', '2', '0,1,2,', '日志查询', '985', null, null, null, '1', null, '1', '2013-06-03 08:00:00', '1', '2013-06-03 08:00:00', null, '0');
 INSERT INTO `sys_menu` VALUES ('68', '67', '0,1,2,67,', '日志查询', '30', '/sys/log', null, 'pencil', '1', 'sys:log:view', '1', '2013-06-03 08:00:00', '1', '2013-06-03 08:00:00', null, '0');
-INSERT INTO `sys_menu` VALUES ('6dbf9c29716b44dabb67a0941b001a98', '99bbea875afe4502b326080c258dec99', '0,1,2,3,99bbea875afe4502b326080c258dec99,', '任务管理', '60', '/qrtz/qrtzJobDetails', '', 'ok', '1', '', '1', '2017-03-18 18:02:45', '1', '2017-03-18 18:08:03', '', '0');
 INSERT INTO `sys_menu` VALUES ('7', '3', '0,1,2,3,', '角色管理', '50', '/sys/role/', null, 'lock', '1', null, '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '0');
 INSERT INTO `sys_menu` VALUES ('71', '27', '0,1,27,', '文件管理', '90', null, null, null, '1', null, '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '0');
 INSERT INTO `sys_menu` VALUES ('79', '1', '0,1,', '代码生成', '5000', null, null, null, '1', null, '1', '2013-10-16 08:00:00', '1', '2013-10-16 08:00:00', null, '0');
@@ -716,9 +713,8 @@ INSERT INTO `sys_menu` VALUES ('82', '80', '0,1,79,80,', '业务表配置', '20'
 INSERT INTO `sys_menu` VALUES ('84', '67', '0,1,2,67,', '连接池监视', '40', '/../druid', null, null, '1', null, '1', '2013-10-18 08:00:00', '1', '2013-10-18 08:00:00', null, '0');
 INSERT INTO `sys_menu` VALUES ('85', '76', '0,1,75,76,', '行政区域', '80', '/../static/map/map-city.html', null, null, '1', null, '1', '2013-10-22 08:00:00', '1', '2013-10-22 08:00:00', null, '0');
 INSERT INTO `sys_menu` VALUES ('9', '7', '0,1,2,3,7,', '修改', '40', null, null, null, '0', 'sys:role:edit', '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '0');
-INSERT INTO `sys_menu` VALUES ('99bbea875afe4502b326080c258dec99', '3', '0,1,2,3,', '调度管理', '120', '', '', 'spinner', '1', '', '1', '2017-03-18 17:25:43', '1', '2017-03-18 18:02:02', '', '0');
-INSERT INTO `sys_menu` VALUES ('b5256daef2f7499c8e3b8e0a145bd93d', '99bbea875afe4502b326080c258dec99', '0,1,2,3,99bbea875afe4502b326080c258dec99,', '触发器管理', '30', '/qrtz/qrtzTriggers', '', 'fullscreen', '1', '', '1', '2017-03-18 18:01:14', '1', '2017-03-18 18:07:44', '', '0');
-INSERT INTO `sys_menu` VALUES ('cd88e08b61cd4fc191da587054064bf6', 'b5256daef2f7499c8e3b8e0a145bd93d', '0,1,2,3,99bbea875afe4502b326080c258dec99,b5256daef2f7499c8e3b8e0a145bd93d,', '查看', '30', '', '', '', '0', 'qrtz:qrtzTriggers:view', '1', '2017-03-18 17:26:09', '1', '2017-03-18 18:01:29', '', '0');
+INSERT INTO `sys_menu` VALUES ('b5256daef2f7499c8e3b8e0a145bd93d', '3', '0,1,2,3,', '调度管理', '120', '/qrtz/qrtzTriggers', '', 'spinner', '1', '', '1', '2017-03-18 18:01:14', '1', '2017-04-22 09:02:11', '', '0');
+INSERT INTO `sys_menu` VALUES ('cd88e08b61cd4fc191da587054064bf6', 'b5256daef2f7499c8e3b8e0a145bd93d', '0,1,2,3,b5256daef2f7499c8e3b8e0a145bd93d,', '查看', '30', '', '', '', '0', 'qrtz:qrtzTriggers:view,qrtz:qrtzJobDetails:view', '1', '2017-03-18 17:26:09', '1', '2017-04-22 09:03:51', '', '0');
 INSERT INTO `sys_menu` VALUES ('d8a3df9c15874d1798a54698bbbe922e', '67', '0,1,2,67,', '模块日志', '50', '/log/modLog', '', 'pencil', '1', 'log:modLog:view', '1', '2017-04-01 09:33:51', '1', '2017-04-05 18:22:56', '', '0');
 
 -- ----------------------------
@@ -847,7 +843,7 @@ CREATE TABLE `sys_role` (
 -- ----------------------------
 -- Records of sys_role
 -- ----------------------------
-INSERT INTO `sys_role` VALUES ('1', '2', '系统管理员', 'dept', 'assignment', '1', '1', '1', '1', '2013-05-27 08:00:00', '1', '2017-04-05 13:15:34', '', '0');
+INSERT INTO `sys_role` VALUES ('1', '2', '系统管理员', 'dept', 'assignment', '1', '1', '1', '1', '2013-05-27 08:00:00', '1', '2017-04-22 09:02:31', '', '0');
 INSERT INTO `sys_role` VALUES ('2', '1', '公司管理员', 'hr', 'assignment', '2', null, '1', '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '0');
 INSERT INTO `sys_role` VALUES ('3', '1', '本公司管理员', 'a', 'assignment', '3', null, '1', '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '0');
 INSERT INTO `sys_role` VALUES ('4', '1', '部门管理员', 'b', 'assignment', '4', null, '1', '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', null, '0');
@@ -868,7 +864,6 @@ CREATE TABLE `sys_role_menu` (
 -- ----------------------------
 -- Records of sys_role_menu
 -- ----------------------------
-INSERT INTO `sys_role_menu` VALUES ('1', '0a220ac42a4a40aeafe92a73cf5b44a1');
 INSERT INTO `sys_role_menu` VALUES ('1', '1');
 INSERT INTO `sys_role_menu` VALUES ('1', '10');
 INSERT INTO `sys_role_menu` VALUES ('1', '11');
@@ -888,7 +883,6 @@ INSERT INTO `sys_role_menu` VALUES ('1', '23');
 INSERT INTO `sys_role_menu` VALUES ('1', '238c7b87e2cd4fce94fd6bbe380eef0b');
 INSERT INTO `sys_role_menu` VALUES ('1', '24');
 INSERT INTO `sys_role_menu` VALUES ('1', '27');
-INSERT INTO `sys_role_menu` VALUES ('1', '27253c8813e74c03b37f7abaa2d46319');
 INSERT INTO `sys_role_menu` VALUES ('1', '28');
 INSERT INTO `sys_role_menu` VALUES ('1', '29');
 INSERT INTO `sys_role_menu` VALUES ('1', '2dc3b306c0864f01a1a57de13884e18d');
@@ -905,7 +899,6 @@ INSERT INTO `sys_role_menu` VALUES ('1', '59');
 INSERT INTO `sys_role_menu` VALUES ('1', '6');
 INSERT INTO `sys_role_menu` VALUES ('1', '67');
 INSERT INTO `sys_role_menu` VALUES ('1', '68');
-INSERT INTO `sys_role_menu` VALUES ('1', '6dbf9c29716b44dabb67a0941b001a98');
 INSERT INTO `sys_role_menu` VALUES ('1', '7');
 INSERT INTO `sys_role_menu` VALUES ('1', '71');
 INSERT INTO `sys_role_menu` VALUES ('1', '79');
@@ -916,7 +909,6 @@ INSERT INTO `sys_role_menu` VALUES ('1', '82');
 INSERT INTO `sys_role_menu` VALUES ('1', '84');
 INSERT INTO `sys_role_menu` VALUES ('1', '85');
 INSERT INTO `sys_role_menu` VALUES ('1', '9');
-INSERT INTO `sys_role_menu` VALUES ('1', '99bbea875afe4502b326080c258dec99');
 INSERT INTO `sys_role_menu` VALUES ('1', 'b5256daef2f7499c8e3b8e0a145bd93d');
 INSERT INTO `sys_role_menu` VALUES ('1', 'cd88e08b61cd4fc191da587054064bf6');
 INSERT INTO `sys_role_menu` VALUES ('1', 'd8a3df9c15874d1798a54698bbbe922e');
@@ -1193,7 +1185,7 @@ CREATE TABLE `sys_user` (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES ('1', '1', '2', 'thinkgem', '02a3f0772fcca9f415adc990734b45c6f059c7d33ee28362c4852032', '0001', '系统管理员', 'thinkgem@163.com', '8675', '8675', null, null, '0:0:0:0:0:0:0:1', '2017-04-05 18:23:01', '1', '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', '最高管理员', '0');
+INSERT INTO `sys_user` VALUES ('1', '1', '2', 'thinkgem', '02a3f0772fcca9f415adc990734b45c6f059c7d33ee28362c4852032', '0001', '系统管理员', 'thinkgem@163.com', '8675', '8675', null, null, '0:0:0:0:0:0:0:1', '2017-04-22 09:04:13', '1', '1', '2013-05-27 08:00:00', '1', '2013-05-27 08:00:00', '最高管理员', '0');
 
 -- ----------------------------
 -- Table structure for sys_user_role
