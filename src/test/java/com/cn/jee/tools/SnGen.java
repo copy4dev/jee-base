@@ -91,7 +91,6 @@ public class SnGen {
      */
     private final static void barCodeVerificationTest(String barCode) {
         System.out.println("条码校验结果:" + barCodeVerification(barCode));
-        ;
     }
 
 }

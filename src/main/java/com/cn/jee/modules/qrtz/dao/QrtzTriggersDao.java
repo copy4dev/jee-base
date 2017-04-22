@@ -16,14 +16,30 @@ import com.cn.jee.modules.qrtz.entity.QrtzTriggers;
 @MyBatisDao
 public interface QrtzTriggersDao extends CrudDao<QrtzTriggers> {
 
-	/**
-	 * 根据组合主键查询
-	 * 
-	 * @param schedName 调度器名称
-	 * @param triggerName 触发器名称
-	 * @param triggerGroup 触发器所属组
-	 * @return
-	 */
-	public QrtzTriggers get(String schedName, String triggerName, String triggerGroup);
+    /**
+     * 根据组合主键查询
+     * 
+     * @param schedName 调度器名称
+     * @param triggerName 触发器名称
+     * @param triggerGroup 触发器所属组
+     * @return
+     */
+    public QrtzTriggers get(String schedName, String triggerName, String triggerGroup);
+
+    /**
+     * 把定时任务的执行时间记录到描述里
+     * 
+     * @param description 描述
+     * @param triggerName xxxTrigger
+     */
+    public void remarkRunTime(String description, String triggerName);
+
+    /**
+     * 根据触发器名称查询一条记录
+     * 
+     * @param triggerName xxxTrigger
+     * @return
+     */
+    public QrtzTriggers getByTriggerName(String triggerName);
 
 }

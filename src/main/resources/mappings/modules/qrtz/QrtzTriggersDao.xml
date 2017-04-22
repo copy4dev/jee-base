@@ -144,4 +144,23 @@
 		WHERE id = #{id}
 	</update>
 	
+	<!-- 把定时任务的执行时间记录到描述里 -->
+	<update id="remarkRunTime">
+		UPDATE qrtz_triggers a 
+		SET 	 
+			a.description = #{0}
+		WHERE a.trigger_name = #{1}
+	</update>
+	
+	<!-- 根据触发器名称查询一条记录 -->
+	<select id="getByTriggerName" resultType="QrtzTriggers">
+		SELECT 
+			<include refid="qrtzTriggersColumns"/>
+		FROM qrtz_triggers a
+			<include refid="qrtzTriggersJoins"/>
+		WHERE 
+			a.trigger_name = #{0}
+		LIMIT 1
+	</select>
+	
 </mapper>
