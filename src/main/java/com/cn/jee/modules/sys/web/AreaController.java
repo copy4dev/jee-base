@@ -21,6 +21,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.cn.jee.common.config.Global;
+import com.cn.jee.common.mapper.JsonMapper;
 import com.cn.jee.common.utils.StringUtils;
 import com.cn.jee.common.web.BaseController;
 import com.cn.jee.modules.sys.entity.Area;
@@ -58,6 +59,7 @@ public class AreaController extends BaseController {
 	@RequiresPermissions("sys:area:view")
 	@RequestMapping(value = "form")
 	public String form(Area area, Model model) {
+		logger.debug("sdf-----{}",JsonMapper.toJsonString(UserUtils.getUser()));
 		if (area.getParent()==null||area.getParent().getId()==null){
 			area.setParent(UserUtils.getUser().getOffice().getArea());
 		}

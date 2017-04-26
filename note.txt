@@ -14,6 +14,7 @@
 3.4挂起恢复任务-ok
 
 #有可能产生java.lang.OutOfMemoryError: PermGen 以及quartz线程数过多
+#spring-context.xml中要引入配置文件
 
 4.线程池优化-ok
 

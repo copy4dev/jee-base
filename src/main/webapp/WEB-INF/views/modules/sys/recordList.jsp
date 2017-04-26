@@ -62,7 +62,6 @@
 			<tr>
 				<th>键名</th>
 				<th>描述</th>
-				<th>更新者</th>
 				<th>更新时间</th>
 				<th>备注信息</th>
 				<shiro:hasPermission name="sys:record:edit"><th>操作</th></shiro:hasPermission>
@@ -77,9 +76,6 @@
 			</a></td>
 			<td>
 				{{row.description}}
-			</td>
-			<td>
-				{{row.updateBy.id}}
 			</td>
 			<td>
 				{{row.updateDate}}
