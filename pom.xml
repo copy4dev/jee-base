@@ -71,6 +71,12 @@
 			<url>http://maven.aliyun.com/nexus/content/groups/public</url>
 		</repository>
 		
+        <repository>
+            <id>nexus-aliyun</id>
+            <name>Nexus aliyun</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+        </repository>
+		
 	</repositories>
 	
 	<!-- 设定插件仓库 -->
