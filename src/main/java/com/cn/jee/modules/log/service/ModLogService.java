@@ -139,8 +139,4 @@ public class ModLogService extends CrudService<ModLogDao, ModLog> {
 		return sql;
 	}
 
-//	private final void dataExport(ModLog modLog) {
-//
-//	}
-
 }
