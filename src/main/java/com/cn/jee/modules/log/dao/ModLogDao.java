@@ -3,6 +3,10 @@
  */
 package com.cn.jee.modules.log.dao;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
 import com.cn.jee.common.persistence.CrudDao;
 import com.cn.jee.common.persistence.annotation.MyBatisDao;
 import com.cn.jee.modules.log.entity.ModLog;
@@ -14,5 +18,7 @@ import com.cn.jee.modules.log.entity.ModLog;
  */
 @MyBatisDao
 public interface ModLogDao extends CrudDao<ModLog> {
+    
+    public List<ModLog> collectionParameterTest(@Param("df")String df,@Param("array")String[] ids);
 	
 }

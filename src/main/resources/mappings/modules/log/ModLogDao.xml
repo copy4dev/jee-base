@@ -113,4 +113,15 @@
 		WHERE id = #{id}
 	</update>
 	
+	<select id="collectionParameterTest" resultType="ModLog">
+		SELECT 
+			<include refid="modLogColumns"/>
+		FROM mod_log a
+		WHERE a.del_flag = #{df}
+		      AND a.id IN
+		      <foreach collection="array" item="item" index="index" open="(" separator="," close=")">
+                  #{item}
+              </foreach>
+	</select>
+	
 </mapper>
